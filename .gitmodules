@@ -1,3 +1,3 @@
 [submodule "lib/sl/StatLight"]
 	path = lib/sl/StatLight
-	url = git://github.com/sdekock/StatLight.git
+	url = git@github.com:sdekock/StatLight.git
