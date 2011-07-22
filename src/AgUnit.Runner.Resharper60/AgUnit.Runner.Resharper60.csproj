@@ -13,10 +13,10 @@
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
-	<ReferencePath>$(Registry:HKEY_LOCAL_MACHINE\SOFTWARE\JetBrains\ReSharper\v6.0\vs10.0@InstallDir)</ReferencePath>	
-	<StartAction>Program</StartAction>
-	<StartProgram>$(DevEnvDir)devenv.exe</StartProgram>
-    <StartArguments>/ReSharper.Plugin AgUnit.Runner.Resharper60.dll /ReSharper.LogFile C:\resharper.log /ReSharper.LogLevel Verbose ..\src\DummyTests\VS2010\DummyTests.sln</StartArguments>    
+    <ReferencePath>$(Registry:HKEY_LOCAL_MACHINE\SOFTWARE\JetBrains\ReSharper\v6.0\vs10.0@InstallDir)</ReferencePath>
+    <StartAction>Program</StartAction>
+    <StartProgram>$(DevEnvDir)devenv.exe</StartProgram>
+    <StartArguments>/ReSharper.Plugin AgUnit.Runner.Resharper60.dll /ReSharper.LogFile C:\resharper.log /ReSharper.LogLevel Verbose ..\src\DummyTests\VS2010\DummyTests.sln</StartArguments>
     <OutputPath>..\..\output\</OutputPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -127,11 +127,14 @@
     <Compile Include="UnitTestFramework\HostProviderWrapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\PluginInfo.cs" />
+    <Compile Include="UnitTestFramework\SilverlightPlatform\SilverlightPlatformSupportExtensions.cs" />
+    <Compile Include="UnitTestFramework\SilverlightPlatform\UnitTestRunExtensions.cs" />
+    <Compile Include="UnitTestFramework\SilverlightPlatform\UnitTestSequenceExtensions.cs" />
     <Compile Include="UnitTestProvider\MSTest\SilverlightMsTestMetadataExplorer.cs" />
     <Compile Include="UnitTestFramework\Silverlight\SilverlightUnitTestElement.cs" />
     <Compile Include="UnitTestFramework\Silverlight\SilverlightUnitTestProvider.cs" />
     <Compile Include="UnitTestFramework\Silverlight\SilverlightUnitTestTask.cs" />
-    <Compile Include="UnitTestFramework\UnitTestLaunchExtensions.cs" />
+    <Compile Include="UnitTestFramework\SilverlightPlatform\UnitTestLaunchExtensions.cs" />
     <Compile Include="Util\ReflectionExtensions.cs" />
     <Compile Include="Util\Tuple.cs" />
   </ItemGroup>

@@ -1,4 +1,5 @@
 extern alias util;
+using AgUnit.Runner.Resharper60.UnitTestFramework.SilverlightPlatform;
 using JetBrains.ReSharper.UnitTestFramework;
 
 namespace AgUnit.Runner.Resharper60.UnitTestFramework

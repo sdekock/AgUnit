@@ -7,34 +7,69 @@ namespace AgUnit.Runner.Resharper60.Util
     public static class ReflectionExtensions
     {
         private static readonly IDictionary<Tuple<Type, string>, FieldInfo> FieldInfoCache = new Dictionary<Tuple<Type, string>, FieldInfo>();
+        private static readonly IDictionary<Tuple<Type, string>, MethodInfo> MethodInfoCache = new Dictionary<Tuple<Type, string>, MethodInfo>();
 
-        public static void SetField(this object target, string fieldName, object value)
+        public static void SetField(this object target, string name, object value)
         {
-            GetFieldInfo(target, fieldName).SetValue(target, value);
+            GetFieldInfo(target, name).SetValue(target, value);
         }
 
-        public static T GetField<T>(this object target, string fieldName)
+        public static T GetField<T>(this object target, string name)
         {
-            return (T)GetFieldInfo(target, fieldName).GetValue(target);
+            return (T)GetFieldInfo(target, name).GetValue(target);
+        }
+
+        public static object CallMethod<T>(this object target, string name, params object[] parameters)
+        {
+            return (T)CallMethod(target, name, parameters);
+        }
+
+        public static object CallMethod(this object target, string name, params object[] parameters)
+        {
+            return GetMethodInfo(target, name).Invoke(target, parameters);
         }
 
         private static FieldInfo GetFieldInfo(object target, string fieldName)
         {
+            return GetMemberInfo(target, fieldName, FieldInfoCache, (type, name, bindingAttr) => type.GetField(name, bindingAttr));
+        }
+
+        private static MethodInfo GetMethodInfo(object target, string methodName)
+        {
+            return GetMemberInfo(target, methodName, MethodInfoCache, (type, name, bindingAttr) => type.GetMethod(name, bindingAttr));
+        }
+
+        private static T GetMemberInfo<T>(object target, string name, IDictionary<Tuple<Type, string>, T> cache, Func<Type, string, BindingFlags, T> getMemberInfo)
+            where T : MemberInfo
+        {
             if (target == null) throw new ArgumentNullException("target");
-            if (fieldName == null) throw new ArgumentNullException("fieldName");
+            if (name == null) throw new ArgumentNullException("name");
 
             var targetType = target.GetType();
-            var cacheKey = Tuple.Create(targetType, fieldName);
+            var cacheKey = Tuple.Create(targetType, name);
 
-            FieldInfo fieldInfo;
+            T memberInfo;
 
-            if (!FieldInfoCache.TryGetValue(cacheKey, out fieldInfo))
+            if (!cache.TryGetValue(cacheKey, out memberInfo))
             {
-                fieldInfo = targetType.GetField(fieldName, BindingFlags.Instance | BindingFlags.NonPublic);
-                FieldInfoCache[cacheKey] = fieldInfo;
+                memberInfo = GetMemberInfoRecursive(name, targetType, getMemberInfo);
+                cache[cacheKey] = memberInfo;
             }
 
-            return fieldInfo;
+            return memberInfo;
+        }
+
+        private static T GetMemberInfoRecursive<T>(string name, Type targetType, Func<Type, string, BindingFlags, T> getMemberInfo)
+            where T : MemberInfo
+        {
+            var memberInfo = getMemberInfo(targetType, name, BindingFlags.Instance | BindingFlags.NonPublic);
+
+            if (memberInfo == null && targetType.BaseType != null)
+            {
+                memberInfo = GetMemberInfoRecursive(name, targetType.BaseType, getMemberInfo);
+            }
+
+            return memberInfo;
         }
     }
 }

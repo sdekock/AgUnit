@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using JetBrains.ReSharper.TaskRunnerFramework;
@@ -38,7 +37,7 @@ namespace AgUnit.Runner.Resharper60.TaskRunner.UnitTestRunner.Silverlight
 
         public override void ExecuteRecursive(TaskExecutionNode node)
         {
-            Debugger.Break();
+            //Debugger.Break();
 
             try
             {
