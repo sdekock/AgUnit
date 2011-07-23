@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using AgUnit.Runner.Resharper60.TaskRunner.UnitTestProvider.MSTest;
+using AgUnit.Runner.Resharper60.TaskRunner.UnitTestProvider.nUnit;
 using AgUnit.Runner.Resharper60.TaskRunner.UnitTestRunner.Silverlight.Execution;
 using AgUnit.Runner.Resharper60.TaskRunner.UnitTestRunner.Silverlight.Providers;
 using EventAggregatorNet;
@@ -37,11 +38,23 @@ namespace AgUnit.Runner.Resharper60.TaskRunner.UnitTestRunner.Silverlight
 
         public override void ExecuteRecursive(TaskExecutionNode node)
         {
-            //Debugger.Break();
+            Debugger.Break();
 
-            var assemblyProviders = new IAssemblyTaskProvider[] { new MsTestAssemblyTaskProvider() };
-            var classProviders = new IClassTaskProvider[] { new MsTestClassTaskProvider() };
-            var methodProviders = new IMethodTaskProvider[] { new MsTestMethodTaskProvider() };
+            var assemblyProviders = new IAssemblyTaskProvider[]
+            {
+                new MsTestAssemblyTaskProvider(),
+                new NUnitAssemblyTaskProvider()
+            };
+            var classProviders = new IClassTaskProvider[]
+            {
+                new MsTestClassTaskProvider(),
+                new NUnitClassTaskProvider()
+            };
+            var methodProviders = new IMethodTaskProvider[]
+            {
+                new MsTestMethodTaskProvider(),
+                new NUnitMethodTaskProvider()
+            };
 
             var taskEnvironment = new TaskEnvironment(Server, assemblyProviders, classProviders, methodProviders);
             var taskNode = new TaskNode(node, taskEnvironment);
