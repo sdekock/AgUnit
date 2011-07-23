@@ -135,9 +135,12 @@
     <Compile Include="UnitTestFramework\Silverlight\SilverlightUnitTestProvider.cs" />
     <Compile Include="UnitTestFramework\Silverlight\SilverlightUnitTestTask.cs" />
     <Compile Include="UnitTestFramework\SilverlightPlatform\UnitTestLaunchExtensions.cs" />
+    <Compile Include="UnitTestProvider\NUnit\SilverlightNUnitMetadataExplorer.cs" />
+    <Compile Include="UnitTestProvider\XUnit\SilverlightXunitTestFileExplorer.cs" />
     <Compile Include="Util\ReflectionExtensions.cs" />
     <Compile Include="Util\Tuple.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>

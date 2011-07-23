@@ -62,6 +62,9 @@
     <Compile Include="UnitTestProvider\nUnit\NUnitClassTaskProvider.cs" />
     <Compile Include="UnitTestProvider\nUnit\NUnitMethodTaskProvider.cs" />
     <Compile Include="UnitTestProvider\MSTest\MsTestAssemblyTaskProvider.cs" />
+    <Compile Include="UnitTestProvider\XUnit\XUnitAssemblyTaskProvider.cs" />
+    <Compile Include="UnitTestProvider\XUnit\XUnitClassTaskProvider.cs" />
+    <Compile Include="UnitTestProvider\XUnit\XUnitMethodTaskProvider.cs" />
     <Compile Include="UnitTestRunner\Silverlight\DebugLogger.cs" />
     <Compile Include="UnitTestRunner\Silverlight\Execution\AssemblyTask.cs" />
     <Compile Include="UnitTestRunner\Silverlight\Execution\ClassTask.cs" />
@@ -83,6 +86,10 @@
     <ProjectReference Include="..\..\lib\sl\StatLight\src\StatLight.Core\StatLight.Core.csproj">
       <Project>{AA6F387F-BB41-4FA8-B38A-7037A7C59716}</Project>
       <Name>StatLight.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AgUnit.Runner.Resharper60\AgUnit.Runner.Resharper60.csproj">
+      <Project>{7FB3C508-1FDC-4664-962C-9BCBC3243595}</Project>
+      <Name>AgUnit.Runner.Resharper60</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

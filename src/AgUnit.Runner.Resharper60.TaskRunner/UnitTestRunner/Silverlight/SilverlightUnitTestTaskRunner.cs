@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using AgUnit.Runner.Resharper60.TaskRunner.UnitTestProvider.MSTest;
+using AgUnit.Runner.Resharper60.TaskRunner.UnitTestProvider.XUnit;
 using AgUnit.Runner.Resharper60.TaskRunner.UnitTestProvider.nUnit;
 using AgUnit.Runner.Resharper60.TaskRunner.UnitTestRunner.Silverlight.Execution;
 using AgUnit.Runner.Resharper60.TaskRunner.UnitTestRunner.Silverlight.Providers;
@@ -43,17 +44,20 @@ namespace AgUnit.Runner.Resharper60.TaskRunner.UnitTestRunner.Silverlight
             var assemblyProviders = new IAssemblyTaskProvider[]
             {
                 new MsTestAssemblyTaskProvider(),
-                new NUnitAssemblyTaskProvider()
+                new NUnitAssemblyTaskProvider(),
+                new XUnitAssemblyTaskProvider()
             };
             var classProviders = new IClassTaskProvider[]
             {
                 new MsTestClassTaskProvider(),
-                new NUnitClassTaskProvider()
+                new NUnitClassTaskProvider(),
+                new XUnitClassTaskProvider()
             };
             var methodProviders = new IMethodTaskProvider[]
             {
                 new MsTestMethodTaskProvider(),
-                new NUnitMethodTaskProvider()
+                new NUnitMethodTaskProvider(),
+                new XUnitMethodTaskProvider()
             };
 
             var taskEnvironment = new TaskEnvironment(Server, assemblyProviders, classProviders, methodProviders);

@@ -1,0 +1,7 @@
+To install:
+
+1. Copy the folder xunitcontrib.runner.resharper.6.0 to C:\Program Files\JetBrains\ReSharper\v6.0\Bin\plugins (C:\Program Files (x86)\JetBrains... on 64 bit machines)
+2. Copy the file resharper.external.annotations\xunit.xml to C:\Program Files\JetBrains\ReSharper\v6.0\Bin\External Annotations
+3. Copy *one* of xunit-ae.xml or xunit-xe.xml to a place it can live and be updated (e.g. C:\Users\<username>\ReSharper, or C:\Documents and Settings\<username>\Documents\ReSharper)
+   Mount a live template in Visual Studio (ReSharper -> Live Templates -> Mount file storage) and point to the copied file
+   xunit-ae.xml contains assert templates beginning with "a", e.g. "ae" => "Assert.Equal". unix-xe.xml starts with "x", e.g. "xe" => "Assert.Equal"

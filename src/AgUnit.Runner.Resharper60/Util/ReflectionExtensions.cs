@@ -7,6 +7,7 @@ namespace AgUnit.Runner.Resharper60.Util
     public static class ReflectionExtensions
     {
         private static readonly IDictionary<Tuple<Type, string>, FieldInfo> FieldInfoCache = new Dictionary<Tuple<Type, string>, FieldInfo>();
+        private static readonly IDictionary<Tuple<Type, string>, PropertyInfo> PropertyInfoCache = new Dictionary<Tuple<Type, string>, PropertyInfo>();
         private static readonly IDictionary<Tuple<Type, string>, MethodInfo> MethodInfoCache = new Dictionary<Tuple<Type, string>, MethodInfo>();
 
         public static void SetField(this object target, string name, object value)
@@ -17,6 +18,16 @@ namespace AgUnit.Runner.Resharper60.Util
         public static T GetField<T>(this object target, string name)
         {
             return (T)GetFieldInfo(target, name).GetValue(target);
+        }
+
+        public static void SetProperty(this object target, string name, object value)
+        {
+            GetPropertyInfo(target, name).SetValue(target, value, null);
+        }
+
+        public static T GetProperty<T>(this object target, string name)
+        {
+            return (T)GetPropertyInfo(target, name).GetValue(target, null);
         }
 
         public static object CallMethod<T>(this object target, string name, params object[] parameters)
@@ -32,6 +43,11 @@ namespace AgUnit.Runner.Resharper60.Util
         private static FieldInfo GetFieldInfo(object target, string fieldName)
         {
             return GetMemberInfo(target, fieldName, FieldInfoCache, (type, name, bindingAttr) => type.GetField(name, bindingAttr));
+        }
+
+        private static PropertyInfo GetPropertyInfo(object target, string propertyName)
+        {
+            return GetMemberInfo(target, propertyName, PropertyInfoCache, (type, name, bindingAttr) => type.GetProperty(name, bindingAttr));
         }
 
         private static MethodInfo GetMethodInfo(object target, string methodName)
@@ -62,7 +78,7 @@ namespace AgUnit.Runner.Resharper60.Util
         private static T GetMemberInfoRecursive<T>(string name, Type targetType, Func<Type, string, BindingFlags, T> getMemberInfo)
             where T : MemberInfo
         {
-            var memberInfo = getMemberInfo(targetType, name, BindingFlags.Instance | BindingFlags.NonPublic);
+            var memberInfo = getMemberInfo(targetType, name, BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);
 
             if (memberInfo == null && targetType.BaseType != null)
             {

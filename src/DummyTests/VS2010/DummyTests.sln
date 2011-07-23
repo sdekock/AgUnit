@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DummyTests.DotNetNUnit", "D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DummyTests.Silverlight4.NUnit", "DummyTests.Silverlight4.NUnit\DummyTests.Silverlight4.NUnit.csproj", "{2D935DC6-C397-414D-87BB-22D77068340E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DummyTests.Silverlight4.XUnit", "DummyTests.Silverlight4.XUnit\DummyTests.Silverlight4.XUnit.csproj", "{50D495DE-3537-4A78-9152-5F965DCC1B94}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DummyTests.DotNetXUnit", "DummyTests.DotNetXUnit\DummyTests.DotNetXUnit.csproj", "{A9B0AFBF-9000-4F07-86DB-0D499261D29A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,6 +47,14 @@ Global
 		{2D935DC6-C397-414D-87BB-22D77068340E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2D935DC6-C397-414D-87BB-22D77068340E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2D935DC6-C397-414D-87BB-22D77068340E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{50D495DE-3537-4A78-9152-5F965DCC1B94}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50D495DE-3537-4A78-9152-5F965DCC1B94}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50D495DE-3537-4A78-9152-5F965DCC1B94}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50D495DE-3537-4A78-9152-5F965DCC1B94}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9B0AFBF-9000-4F07-86DB-0D499261D29A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9B0AFBF-9000-4F07-86DB-0D499261D29A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9B0AFBF-9000-4F07-86DB-0D499261D29A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9B0AFBF-9000-4F07-86DB-0D499261D29A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
