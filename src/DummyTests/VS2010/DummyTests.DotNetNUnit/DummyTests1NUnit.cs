@@ -53,6 +53,12 @@ namespace DummyTests.DotNetNUnit
         {
         }
 
+        [Test]
+        public void FailingTest4()
+        {
+            throw new InvalidOperationException();
+        }
+
         [TearDown]
         public void TestCleanup1()
         {

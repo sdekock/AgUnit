@@ -16,7 +16,7 @@
     <ReferencePath>$(Registry:HKEY_LOCAL_MACHINE\SOFTWARE\JetBrains\ReSharper\v6.0\vs10.0@InstallDir)</ReferencePath>
     <StartAction>Program</StartAction>
     <StartProgram>$(DevEnvDir)devenv.exe</StartProgram>
-    <StartArguments>/ReSharper.Plugin AgUnit.Runner.Resharper60.dll /ReSharper.LogFile C:\resharper.log /ReSharper.LogLevel Verbose ..\src\DummyTests\VS2010\DummyTests.sln</StartArguments>
+    <StartArguments>/ReSharper.Plugin AgUnit.Runner.Resharper60.dll /ReSharper.LogFile "..\resharper.log" /ReSharper.LogLevel Verbose ..\src\DummyTests\VS2010\DummyTests.sln</StartArguments>
     <OutputPath>..\..\output\</OutputPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">

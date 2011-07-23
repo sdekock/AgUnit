@@ -24,6 +24,8 @@ namespace DummyTests.Silverlight4
         [TestMethod]
         public void PassingTest1()
         {
+
+            System.Threading.Thread.Sleep(2000);
         }
 
         [TestMethod]
@@ -56,6 +58,12 @@ namespace DummyTests.Silverlight4
         [ExpectedException(typeof(InvalidOperationException))]
         public void FailingTest3()
         {
+        }
+
+        [TestMethod]
+        public void FailingTest4()
+        {
+            throw new InvalidOperationException();
         }
 
         [TestCleanup]

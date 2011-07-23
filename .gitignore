@@ -4,3 +4,5 @@
 *.user
 _ReSharper.*/
 output/*
+resharper.log
+TestResults/

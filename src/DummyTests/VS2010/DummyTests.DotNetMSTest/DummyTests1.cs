@@ -58,6 +58,12 @@ namespace DummyTests.DotNetMSTest
         {
         }
 
+        [TestMethod]
+        public void FailingTest4()
+        {
+            throw new InvalidOperationException();
+        }
+
         [TestCleanup]
         public void TestCleanup1()
         {

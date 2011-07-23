@@ -12,11 +12,11 @@
     <AssemblyName>AgUnit.Runner.Resharper60.TaskRunner</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />	
-	<ReferencePath>$(Registry:HKEY_LOCAL_MACHINE\SOFTWARE\JetBrains\ReSharper\v6.0\vs10.0@InstallDir)</ReferencePath>	
-	<StartAction>Program</StartAction>
-	<StartProgram>$(DevEnvDir)devenv.exe</StartProgram>
-    <StartArguments>/ReSharper.Plugin AgUnit.Runner.Resharper60.dll /ReSharper.LogFile C:\resharper.log /ReSharper.LogLevel Verbose ..\src\DummyTests\VS2010\DummyTests.sln</StartArguments>    
+    <TargetFrameworkProfile />
+    <ReferencePath>$(Registry:HKEY_LOCAL_MACHINE\SOFTWARE\JetBrains\ReSharper\v6.0\vs10.0@InstallDir)</ReferencePath>
+    <StartAction>Program</StartAction>
+    <StartProgram>$(DevEnvDir)devenv.exe</StartProgram>
+    <StartArguments>/ReSharper.Plugin AgUnit.Runner.Resharper60.dll /ReSharper.LogFile C:\resharper.log /ReSharper.LogLevel Verbose ..\src\DummyTests\VS2010\DummyTests.sln</StartArguments>
     <OutputPath>..\..\output\</OutputPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -54,9 +54,23 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UnitTestProvider\MSTest\MsTestAssemblyTaskProvider.cs" />
+    <Compile Include="UnitTestRunner\Silverlight\DebugLogger.cs" />
+    <Compile Include="UnitTestRunner\Silverlight\Execution\AssemblyTask.cs" />
+    <Compile Include="UnitTestRunner\Silverlight\Execution\ClassTask.cs" />
+    <Compile Include="UnitTestRunner\Silverlight\Execution\MethodTask.cs" />
+    <Compile Include="UnitTestProvider\MSTest\MsTestClassTaskProvider.cs" />
+    <Compile Include="UnitTestProvider\MSTest\MsTestMethodTaskProvider.cs" />
+    <Compile Include="UnitTestRunner\Silverlight\Providers\IAssemblyTaskProvider.cs" />
+    <Compile Include="UnitTestRunner\Silverlight\Providers\IClassTaskProvider.cs" />
+    <Compile Include="UnitTestRunner\Silverlight\Providers\IMethodTaskProvider.cs" />
+    <Compile Include="UnitTestRunner\Silverlight\SilverlightResultsHandler.cs" />
     <Compile Include="UnitTestRunner\Silverlight\SilverlightUnitTestTaskRunner.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="UnitTestRunner\Silverlight\Execution\TaskEnvironment.cs" />
+    <Compile Include="UnitTestRunner\Silverlight\Execution\TaskNode.cs" />
+    <Compile Include="UnitTestRunner\Silverlight\Providers\TaskNodeExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\lib\sl\StatLight\src\StatLight.Core\StatLight.Core.csproj">
