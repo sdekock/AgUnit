@@ -1,13 +1,15 @@
 ﻿using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using JetBrains.Application.PluginSupport;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyCompany("Steven De Kock")]
-[assembly: AssemblyProduct("AgUnit")]
-[assembly: AssemblyCopyright("Copyright (c) Steven De Kock 2011")]
+[assembly: AssemblyDescription("AgUnit - http://agunit.codeplex.com")]
+[assembly: AssemblyCompany("AgUnit - http://agunit.codeplex.com")]
+[assembly: AssemblyProduct("AgUnit - http://agunit.codeplex.com")]
+[assembly: AssemblyCopyright("Copyright © AgUnit authors - http://agunit.codeplex.com 2011")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -23,3 +25,9 @@ using System.Runtime.InteropServices;
 
 [assembly: AssemblyVersion("0.4.0.0")]
 [assembly: AssemblyFileVersion("0.4.0.0")]
+
+// Plugin info for ReSharper
+
+[assembly: PluginTitle("AgUnit 0.4 for R# 6.0")]
+[assembly: PluginDescription("AgUnit 0.4 for R# 6.0 - http://agunit.codeplex.com")]
+[assembly: PluginVendor("AgUnit authors - http://agunit.codeplex.com")]
