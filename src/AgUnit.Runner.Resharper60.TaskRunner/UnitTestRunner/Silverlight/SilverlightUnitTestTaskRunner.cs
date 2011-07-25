@@ -39,7 +39,7 @@ namespace AgUnit.Runner.Resharper60.TaskRunner.UnitTestRunner.Silverlight
 
         public override void ExecuteRecursive(TaskExecutionNode node)
         {
-            Debugger.Break();
+            //Debugger.Break();
 
             var assemblyProviders = new IAssemblyTaskProvider[]
             {
