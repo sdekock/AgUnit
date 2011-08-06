@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Reflection;
+using AgUnit.Runner.Resharper60.UnitTestFramework.Silverlight;
 using JetBrains.Application;
 using JetBrains.Metadata.Utils;
 using JetBrains.ProjectModel;
@@ -19,16 +20,26 @@ namespace AgUnit.Runner.Resharper60.UnitTestProvider.XUnit
     {
         private const string ProviderId = "xUnit";
         private static readonly Type XunitPsiFileExplorerType = Type.GetType("XunitContrib.Runner.ReSharper.UnitTestProvider.XunitPsiFileExplorer, xunitcontrib.runner.resharper.provider.6.0");
-        
+
         private readonly IUnitTestProvider provider;
+        private readonly bool xUnitInstalled = true;
 
         public SilverlightXunitTestFileExplorer(ISolution solution)
         {
             provider = UnitTestManager.GetInstance(solution).GetProvider(ProviderId);
+
+            if (provider == null)
+            {
+                xUnitInstalled = false;
+                provider = UnitTestManager.GetInstance(solution).GetProvider(SilverlightUnitTestProvider.RunnerId);
+            }
         }
 
         public void ExploreFile(IFile psiFile, UnitTestElementLocationConsumer consumer, CheckForInterrupt interrupted)
         {
+            if (!xUnitInstalled)
+                return;
+
             if (provider == null)
                 return;
 
@@ -42,7 +53,7 @@ namespace AgUnit.Runner.Resharper60.UnitTestProvider.XUnit
             if (project.GetAssemblyReferences().Any(IsSilverlightMscorlib))
                 return;
 
-            var psiFileExplorer = (IRecursiveElementProcessor)Activator.CreateInstance(XunitPsiFileExplorerType, 
+            var psiFileExplorer = (IRecursiveElementProcessor)Activator.CreateInstance(XunitPsiFileExplorerType,
                 provider, consumer, psiFile, interrupted);
 
             psiFile.ProcessDescendants(psiFileExplorer);
