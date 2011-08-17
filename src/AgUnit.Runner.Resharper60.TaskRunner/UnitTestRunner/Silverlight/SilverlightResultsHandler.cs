@@ -62,10 +62,7 @@ namespace AgUnit.Runner.Resharper60.TaskRunner.UnitTestRunner.Silverlight
         }
 
         public void Handle(TraceClientEvent message)
-        {
-            // TODO: Note sure what to do with this, maybe ask Jason Jarrett ...
-            // TODO: Apparently a test method with ExpectedException, that is not throwing an exception, is not returning a test result (See TestFixture1.FailingTest3 in DummyTests)
-        }
+        { }
 
         public void Handle(BrowserHostCommunicationTimeoutServerEvent message)
         {

@@ -27,21 +27,21 @@ namespace AgUnit.Runner.Resharper60.UnitTestFramework.SilverlightPlatform
         {
             if (!sequence.IsSilverlightSequence())
             {
-                var requiredSilverlightPlatform = sequence.GetRequiredSilverlightPlatform();
-                if (requiredSilverlightPlatform != null)
+                var silverlightProject = sequence.GetSilverlightProject();
+                if (silverlightProject != null)
                 {
                     run.GetSequences().Remove(sequence);
 
-                    CreateSilverlightSequence(sequence, launch, manager, requiredSilverlightPlatform);
+                    CreateSilverlightSequence(sequence, launch, manager, silverlightProject);
                 }
             }
         }
 
-        private static void CreateSilverlightSequence(IList<UnitTestTask> sequence, IUnitTestLaunch launch, UnitTestManager manager, PlatformID silverlightPlatform)
+        private static void CreateSilverlightSequence(IList<UnitTestTask> sequence, IUnitTestLaunch launch, UnitTestManager manager, IProject silverlightProject)
         {
-            var silverlightRun = launch.GetOrCreateSilverlightRun(silverlightPlatform);
+            var silverlightRun = launch.GetOrCreateSilverlightRun(silverlightProject.PlatformID);
 
-            sequence.AddSilverlightUnitTestTask(silverlightPlatform, manager);
+            sequence.AddSilverlightUnitTestTask(silverlightProject, manager);
             sequence.RemoveAssemblyLoadTasks();
 
             silverlightRun.AddTaskSequence(sequence);

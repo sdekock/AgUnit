@@ -16,11 +16,11 @@ namespace AgUnit.Runner.Resharper60.TaskRunner.UnitTestProvider.MSTest
             return (MsTestTestAssemblyTask)task;
         }
 
-        public string GetXapPath(RemoteTask task)
+        public string GetAssemblyLocation(RemoteTask task)
         {
             var assemblyTask = GetTask(task);
 
-            return assemblyTask.AssemblyLocation.Replace(".dll", ".xap"); // TODO: Find a way to get this from the project settings.
+            return assemblyTask.AssemblyLocation;
         }
     }
 }

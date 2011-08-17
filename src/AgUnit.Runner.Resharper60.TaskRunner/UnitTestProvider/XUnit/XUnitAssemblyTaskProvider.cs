@@ -11,9 +11,9 @@ namespace AgUnit.Runner.Resharper60.TaskRunner.UnitTestProvider.XUnit
             return task.GetType().FullName == "XunitContrib.Runner.ReSharper.RemoteRunner.XunitTestAssemblyTask";
         }
 
-        public string GetXapPath(RemoteTask task)
+        public string GetAssemblyLocation(RemoteTask task)
         {
-            return task.GetProperty<string>("AssemblyLocation").Replace(".dll", ".xap"); // TODO: Find a way to get this from the project settings.
+            return task.GetProperty<string>("AssemblyLocation");
         }
     }
 }

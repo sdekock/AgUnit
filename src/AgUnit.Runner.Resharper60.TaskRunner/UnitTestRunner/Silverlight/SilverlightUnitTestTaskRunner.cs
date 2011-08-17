@@ -39,7 +39,7 @@ namespace AgUnit.Runner.Resharper60.TaskRunner.UnitTestRunner.Silverlight
 
         public override void ExecuteRecursive(TaskExecutionNode node)
         {
-            //Debugger.Break();
+            Debugger.Break();
 
             var assemblyProviders = new IAssemblyTaskProvider[]
             {
@@ -63,21 +63,20 @@ namespace AgUnit.Runner.Resharper60.TaskRunner.UnitTestRunner.Silverlight
             var taskEnvironment = new TaskEnvironment(Server, assemblyProviders, classProviders, methodProviders);
             var taskNode = new TaskNode(node, taskEnvironment);
 
-            foreach (var assemblyTaskNode in taskNode.GetAssemblyTasks())
+            foreach (var silverlightTaskNode in taskNode.GetSilverlightTasks())
             {
-                assemblyTaskNode.Execute(Execute);
+                silverlightTaskNode.Execute(Execute);
             }
         }
 
-        private void Execute(AssemblyTask assemblyTask)
+        private void Execute(SilverlightTask silverlightTask)
         {
-            var xapPath = assemblyTask.GetXapPath();
-            var testMethods = assemblyTask.Node.GetMethodTasks().ToArray();
-            var testClasses = assemblyTask.Node.GetClassTasks().ToArray();
+            var testMethods = silverlightTask.Node.GetMethodTasks().ToArray();
+            var testClasses = silverlightTask.Node.GetClassTasks().ToArray();
 
             var logger = CreateStatLightLogger();
             var eventAggregator = CreateStatLightEventAggregator(testClasses, testMethods, logger);
-            var configuration = CreateStatLightConfiguration(testMethods, logger, xapPath);
+            var configuration = CreateStatLightConfiguration(silverlightTask, logger, testMethods);
             var runner = CreateStatLightRunner(configuration, logger, eventAggregator);
 
             var testReport = runner.Run();
@@ -98,13 +97,37 @@ namespace AgUnit.Runner.Resharper60.TaskRunner.UnitTestRunner.Silverlight
             return eventAggregator;
         }
 
-        private static StatLightConfiguration CreateStatLightConfiguration(IEnumerable<MethodTask> testMethods, ILogger logger, string xapPath)
+        private static StatLightConfiguration CreateStatLightConfiguration(SilverlightTask silverlightTask, DebugLogger logger, MethodTask[] testMethods)
         {
             var configurationFactory = new StatLightConfigurationFactory(logger);
 
+            return silverlightTask.HasXapPath() ?
+                CreateStatLightConfigurationForXap(configurationFactory, testMethods, silverlightTask.GetXapPath()) :
+                CreateStatLightConfigurationForDll(configurationFactory, testMethods, silverlightTask.GetDllPath());
+        }
+
+        private static StatLightConfiguration CreateStatLightConfigurationForXap(StatLightConfigurationFactory configurationFactory, IEnumerable<MethodTask> testMethods, string xapPath)
+        {
             return configurationFactory.GetStatLightConfigurationForXap(
                 unitTestProviderType: UnitTestProviderType.Undefined, // Let StatLight figure it out
                 xapPath: xapPath,
+                microsoftTestingFrameworkVersion: null, // Let StatLight figure it out
+                methodsToTest: new Collection<string>(testMethods.Select(m => m.GetFullMethodName()).ToList()),
+                tagFilters: null,
+                numberOfBrowserHosts: 1, // Maybe you spin up 3 or 4 here if you know you're running a ton of tests
+                isRemoteRun: false,
+                queryString: "", // This is passed to the browser host page (say your test need some configuration - could be passed here - probably not a use case in ReSharper runner)
+                webBrowserType: WebBrowserType.SelfHosted,
+                forceBrowserStart: false,
+                showTestingBrowserHost: false // If you need UI support this needs to be true
+            );
+        }
+
+        private static StatLightConfiguration CreateStatLightConfigurationForDll(StatLightConfigurationFactory configurationFactory, IEnumerable<MethodTask> testMethods, string dllPath)
+        {
+            return configurationFactory.GetStatLightConfigurationForDll(
+                unitTestProviderType: UnitTestProviderType.Undefined, // Let StatLight figure it out
+                dllPath: dllPath,
                 microsoftTestingFrameworkVersion: null, // Let StatLight figure it out
                 methodsToTest: new Collection<string>(testMethods.Select(m => m.GetFullMethodName()).ToList()),
                 tagFilters: null,

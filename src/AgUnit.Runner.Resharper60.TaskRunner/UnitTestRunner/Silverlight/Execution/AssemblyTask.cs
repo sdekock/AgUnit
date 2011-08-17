@@ -1,4 +1,3 @@
-using System;
 using AgUnit.Runner.Resharper60.TaskRunner.UnitTestRunner.Silverlight.Providers;
 
 namespace AgUnit.Runner.Resharper60.TaskRunner.UnitTestRunner.Silverlight.Execution
@@ -14,14 +13,9 @@ namespace AgUnit.Runner.Resharper60.TaskRunner.UnitTestRunner.Silverlight.Execut
             AssemblyTaskProvider = assemblyTaskProvider;
         }
 
-        public void Execute(Action<AssemblyTask> execute)
+        public string GetAssemblyLocation()
         {
-            Node.Execute(execute, this);
-        }
-
-        public string GetXapPath()
-        {
-            return AssemblyTaskProvider.GetXapPath(Node.Task);
+            return AssemblyTaskProvider.GetAssemblyLocation(Node.Task);
         }
     }
 }

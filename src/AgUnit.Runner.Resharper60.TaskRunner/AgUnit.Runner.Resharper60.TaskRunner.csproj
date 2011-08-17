@@ -75,6 +75,7 @@
     <Compile Include="UnitTestRunner\Silverlight\DebugLogger.cs" />
     <Compile Include="UnitTestRunner\Silverlight\Execution\AssemblyTask.cs" />
     <Compile Include="UnitTestRunner\Silverlight\Execution\ClassTask.cs" />
+    <Compile Include="UnitTestRunner\Silverlight\Execution\SilverlightTask.cs" />
     <Compile Include="UnitTestRunner\Silverlight\Execution\MethodTask.cs" />
     <Compile Include="UnitTestProvider\MSTest\MsTestClassTaskProvider.cs" />
     <Compile Include="UnitTestProvider\MSTest\MsTestMethodTaskProvider.cs" />

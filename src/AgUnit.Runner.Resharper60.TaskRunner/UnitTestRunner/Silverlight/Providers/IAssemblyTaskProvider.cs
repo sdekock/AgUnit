@@ -5,6 +5,6 @@ namespace AgUnit.Runner.Resharper60.TaskRunner.UnitTestRunner.Silverlight.Provid
     public interface IAssemblyTaskProvider
     {
         bool IsAssemblyTask(RemoteTask task);
-        string GetXapPath(RemoteTask task);
+        string GetAssemblyLocation(RemoteTask task);
     }
 }

@@ -1,11 +1,25 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using AgUnit.Runner.Resharper60.TaskRunner.UnitTestRunner.Silverlight.Execution;
+using AgUnit.Runner.Resharper60.UnitTestFramework.Silverlight;
 
 namespace AgUnit.Runner.Resharper60.TaskRunner.UnitTestRunner.Silverlight.Providers
 {
     public static class TaskNodeExtensions
     {
+        public static IEnumerable<SilverlightTask> GetSilverlightTasks(this TaskNode node)
+        {
+            if (node.Task is SilverlightUnitTestTask)
+            {
+                yield return new SilverlightTask(node);
+            }
+
+            foreach (var child in node.Children.SelectMany(child => child.GetSilverlightTasks()))
+            {
+                yield return child;
+            }
+        }
+
         public static IEnumerable<AssemblyTask> GetAssemblyTasks(this TaskNode node)
         {
             foreach (var assemblyTaskProvider in node.Environment.AssemblyTaskProviders)

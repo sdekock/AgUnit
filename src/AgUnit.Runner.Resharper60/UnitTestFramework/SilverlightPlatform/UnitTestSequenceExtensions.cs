@@ -1,24 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using AgUnit.Runner.Resharper60.UnitTestFramework.Silverlight;
+using EnvDTE;
+using JetBrains.Application;
 using JetBrains.ProjectModel;
 using JetBrains.ReSharper.TaskRunnerFramework;
 using JetBrains.ReSharper.UnitTestFramework;
-using PlatformID = JetBrains.ProjectModel.PlatformID;
+using JetBrains.VsIntegration.ProjectModel;
 
 namespace AgUnit.Runner.Resharper60.UnitTestFramework.SilverlightPlatform
 {
     public static class UnitTestSequenceExtensions
     {
-        public static PlatformID GetRequiredSilverlightPlatform(this IList<UnitTestTask> sequence)
+        public static IProject GetSilverlightProject(this IList<UnitTestTask> sequence)
         {
             return sequence
                 .Where(task => task.Element != null)
                 .Select(task => task.Element.GetProject())
-                .Where(project => project != null)
-                .Select(project => project.PlatformID)
-                .FirstOrDefault(platform => platform != null && platform.Identifier == FrameworkIdentifier.Silverlight);
+                .Where(project => project != null && project.PlatformID != null && project.PlatformID.Identifier == FrameworkIdentifier.Silverlight)
+                .FirstOrDefault();
         }
 
         public static bool IsSilverlightSequence(this IList<UnitTestTask> sequence)
@@ -37,11 +40,12 @@ namespace AgUnit.Runner.Resharper60.UnitTestFramework.SilverlightPlatform
             return sequence.Select(task => task.RemoteTask).FirstOrDefault() as SilverlightUnitTestTask;
         }
 
-        public static void AddSilverlightUnitTestTask(this IList<UnitTestTask> sequence, PlatformID silverlightPlatform, UnitTestManager manager)
+        public static void AddSilverlightUnitTestTask(this IList<UnitTestTask> sequence, IProject silverlightProject, UnitTestManager manager)
         {
             var provider = manager.GetProvider(SilverlightUnitTestProvider.RunnerId);
             var element = new SilverlightUnitTestElement(provider);
-            var remoteTask = new SilverlightUnitTestTask(silverlightPlatform.Version);
+
+            var remoteTask = new SilverlightUnitTestTask(silverlightProject.PlatformID.Version, silverlightProject.GetXapPath(), silverlightProject.GetDllPath());
             sequence.Insert(0, new UnitTestTask(element, remoteTask));
         }
 
