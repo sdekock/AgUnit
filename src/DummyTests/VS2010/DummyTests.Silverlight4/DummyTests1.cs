@@ -24,8 +24,6 @@ namespace DummyTests.Silverlight4
         [TestMethod]
         public void PassingTest1()
         {
-
-            System.Threading.Thread.Sleep(2000);
         }
 
         [TestMethod]

@@ -1,83 +1,71 @@
 using System;
-using Microsoft.Silverlight.Testing;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
-namespace DummyTests.Silverlight4.Library
+namespace DummyTests.Silverlight4.NUnit.TestDrivenProjectTemplate
 {
-    [TestClass]
+    [TestFixture]
     public class TestFixture1
     {
-        [AssemblyInitialize]
-        public static void AssemblyInitialize1(TestContext context)
+        [TestFixtureSetUp]
+        public static void ClassInitialize1()
         {
         }
 
-        [ClassInitialize]
-        public static void ClassInitialize1(TestContext context)
-        {
-        }
-
-        [TestInitialize]
+        [SetUp]
         public void TestInitialize1()
         {
         }
 
-        [TestMethod]
+        [Test]
         public void PassingTest1()
         {
         }
 
-        [Tag("test")]
-        [TestMethod]
+        [Test]
         public void FailingTest1()
         {
             Assert.Fail();
         }
 
         [Ignore]
-        [TestMethod]
+        [Test]
         public void IgnoredTest1()
         {
         }
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(InvalidOperationException))]
         public void PassingTest2()
         {
             throw new InvalidOperationException();
         }
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(NotSupportedException))]
         public void FailingTest2()
         {
             throw new InvalidOperationException();
         }
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(InvalidOperationException))]
         public void FailingTest3()
         {
         }
 
-        [TestMethod]
+        [Test]
         public void FailingTest4()
         {
             throw new InvalidOperationException();
         }
 
-        [TestCleanup]
+        [TearDown]
         public void TestCleanup1()
         {
         }
 
-        [ClassCleanup]
+        [TestFixtureTearDown]
         public static void ClassCleanup1()
-        {
-        }
-
-        [AssemblyCleanup]
-        public static void AssemblyCleanup1()
         {
         }
     }
