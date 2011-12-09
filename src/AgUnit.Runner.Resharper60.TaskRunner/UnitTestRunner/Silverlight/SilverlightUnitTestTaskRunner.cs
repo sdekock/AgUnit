@@ -12,6 +12,7 @@ using StatLight.Core.Configuration;
 using StatLight.Core.Events;
 using StatLight.Core.Runners;
 using StatLight.Core.WebBrowser;
+using TinyIoC;
 
 namespace AgUnit.Runner.Resharper60.TaskRunner.UnitTestRunner.Silverlight
 {
@@ -74,49 +75,40 @@ namespace AgUnit.Runner.Resharper60.TaskRunner.UnitTestRunner.Silverlight
             var testClasses = silverlightTask.Node.GetClassTasks().ToArray();
 
             var logger = CreateStatLightLogger();
-            var eventAggregator = CreateStatLightEventAggregator(testClasses, testMethods, logger);
-            var configuration = CreateStatLightConfiguration(silverlightTask, logger, testMethods);
-            var runner = CreateStatLightRunner(configuration, logger, eventAggregator);
 
-            var testReport = runner.Run();
-        }
+            var inputOptions = CreateInputOptions(silverlightTask, testMethods);
 
-        private static DebugLogger CreateStatLightLogger()
-        {
-            return new DebugLogger(LogChatterLevels.Full);
-        }
+            // Bootstrap StatLight and load up needed dependencies.
+            TinyIoCContainer ioc = StatLight.Core.BootStrapper.Initialize(inputOptions, logger);
+            var eventSubscriptionManager = ioc.Resolve<IEventSubscriptionManager>();
+            var statLightConfigurationFactory = ioc.Resolve<StatLightConfigurationFactory>();
+            var statLightRunnerFactory = ioc.Resolve<StatLightRunnerFactory>();
 
-        private static EventAggregator CreateStatLightEventAggregator(IEnumerable<ClassTask> testClasses, IEnumerable<MethodTask> testMethods, ILogger logger)
-        {
+            // Create the AgUnit specific test result handler and include it with the StatLight event aggregator.
             var eventsHandler = new SilverlightResultsHandler(testClasses, testMethods);
-            var eventAggregator = new EventAggregatorFactory(logger).Create();
+            eventSubscriptionManager.AddListener(eventsHandler);
 
-            eventAggregator.AddListener(eventsHandler);
-
-            return eventAggregator;
+            StatLightConfiguration statLightConfiguration = statLightConfigurationFactory.GetConfigurations().Single();
+            IRunner onetimeConsoleRunner = statLightRunnerFactory.CreateOnetimeConsoleRunner(statLightConfiguration);
+            var testReport = onetimeConsoleRunner.Run();
         }
 
-        private static StatLightConfiguration CreateStatLightConfiguration(SilverlightTask silverlightTask, DebugLogger logger, MethodTask[] testMethods)
+        private static InputOptions CreateInputOptions(SilverlightTask silverlightTask, MethodTask[] testMethods)
         {
             var inputOptions = new InputOptions()
                 .SetMethodsToTest(testMethods.Select(m => m.GetFullMethodName()))
                 ;
 
             if (silverlightTask.HasXapPath())
-                inputOptions.SetXapPaths(new[] { silverlightTask.GetXapPath() });
+                inputOptions.SetXapPaths(new[] {silverlightTask.GetXapPath()});
             else
-                inputOptions.SetDllPaths(new[] { silverlightTask.GetDllPath() });
-
-            var configurationFactory = new StatLightConfigurationFactory(logger, inputOptions);
-
-            return configurationFactory.GetConfigurations().Single();
+                inputOptions.SetDllPaths(new[] {silverlightTask.GetDllPath()});
+            return inputOptions;
         }
 
-        private static IRunner CreateStatLightRunner(StatLightConfiguration config, ILogger logger, EventAggregator eventAggregator)
+        private static DebugLogger CreateStatLightLogger()
         {
-            var runnerFactory = new StatLightRunnerFactory(logger, eventAggregator, eventAggregator);
-
-            return runnerFactory.CreateOnetimeConsoleRunner(config);
+            return new DebugLogger(LogChatterLevels.Full);
         }
     }
 }
