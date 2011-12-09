@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using AgUnit.Runner.Resharper60.TaskRunner.UnitTestRunner.Silverlight.Execution;
-using EventAggregatorNet;
 using JetBrains.ReSharper.TaskRunnerFramework;
 using StatLight.Client.Harness.Events;
 using StatLight.Core.Events;
