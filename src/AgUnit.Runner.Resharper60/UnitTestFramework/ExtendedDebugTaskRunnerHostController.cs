@@ -4,6 +4,7 @@ using System.Runtime.InteropServices;
 using AgUnit.Runner.Resharper60.UnitTestFramework.SilverlightPlatform;
 using AgUnit.Runner.Resharper60.Util;
 using EnvDTE;
+using JetBrains.ProjectModel;
 using JetBrains.ReSharper.UnitTestExplorer;
 using JetBrains.ReSharper.UnitTestFramework;
 using JetBrains.Threading;
@@ -15,8 +16,8 @@ namespace AgUnit.Runner.Resharper60.UnitTestFramework
 {
     public class ExtendedDebugTaskRunnerHostController : DebugTaskRunnerHostController
     {
-        public ExtendedDebugTaskRunnerHostController(UnitTestManager manager, UnitTestSessionManager sessionManager, util::JetBrains.Util.Lazy.Lazy<IVsDebugger2> debugger2, DTE dte, IThreading threading, IUnitTestLaunch launch, string remotingAddress)
-            : base(manager, sessionManager, debugger2, dte, threading, launch, remotingAddress)
+        public ExtendedDebugTaskRunnerHostController(IUnitTestSessionManager sessionManager, util::JetBrains.Util.Lazy.Lazy<IVsDebugger2> debugger2, DTE dte, IThreading threading, IUnitTestLaunch launch, string remotingAddress)
+            : base(sessionManager, debugger2, dte, threading, launch, remotingAddress)
         { }
 
         public override void Run(string remotingAddress, IUnitTestRun run)

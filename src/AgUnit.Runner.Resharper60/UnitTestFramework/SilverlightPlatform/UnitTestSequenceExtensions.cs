@@ -40,9 +40,9 @@ namespace AgUnit.Runner.Resharper60.UnitTestFramework.SilverlightPlatform
             return sequence.Select(task => task.RemoteTask).FirstOrDefault() as SilverlightUnitTestTask;
         }
 
-        public static void AddSilverlightUnitTestTask(this IList<UnitTestTask> sequence, IProject silverlightProject, UnitTestManager manager)
+        public static void AddSilverlightUnitTestTask(this IList<UnitTestTask> sequence, IProject silverlightProject, UnitTestProviders providers)
         {
-            var provider = manager.GetProvider(SilverlightUnitTestProvider.RunnerId);
+            var provider = providers.GetProvider(SilverlightUnitTestProvider.RunnerId);
             var element = new SilverlightUnitTestElement(provider);
 
             var remoteTask = new SilverlightUnitTestTask(silverlightProject.PlatformID.Version, silverlightProject.GetXapPath(), silverlightProject.GetDllPath());

@@ -1,6 +1,7 @@
 ﻿extern alias util;
 using AgUnit.Runner.Resharper60.Util;
 using EnvDTE;
+using JetBrains.ProjectModel;
 using JetBrains.ReSharper.UnitTestExplorer;
 using JetBrains.ReSharper.UnitTestFramework;
 using JetBrains.Threading;
@@ -23,9 +24,9 @@ namespace AgUnit.Runner.Resharper60.UnitTestFramework
             threading = wrappedHostProvider.GetField<IThreading>("myThreading");
         }
 
-        protected override ITaskRunnerHostController CreateWrappedHostController(UnitTestManager manager, UnitTestSessionManager sessionManager, IUnitTestLaunch launch, string remotingAddress)
+        protected override ITaskRunnerHostController CreateWrappedHostController(ISolution solution, IUnitTestSessionManager sessionManager, IUnitTestLaunch launch, string remotingAddress)
         {
-            return new ExtendedDebugTaskRunnerHostController(manager, sessionManager, debugger2, dte, threading, launch, remotingAddress);
+            return new ExtendedDebugTaskRunnerHostController(sessionManager, debugger2, dte, threading, launch, remotingAddress);
         }
     }
 }

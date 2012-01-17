@@ -121,7 +121,7 @@ namespace AgUnit.Runner.Resharper60.UnitTestFramework.Silverlight
             return new List<IProjectFile>();
         }
 
-        public IList<UnitTestTask> GetTaskSequence(IEnumerable<IUnitTestElement> explicitElements)
+        public IList<UnitTestTask> GetTaskSequence(IList<IUnitTestElement> explicitElements)
         {
             return new List<UnitTestTask>();
         }
