@@ -8,7 +8,7 @@ namespace AgUnit.Runner.Resharper60.UnitTestFramework.SilverlightPlatform
 {
     public static class SilverlightPlatformSupportExtensions
     {
-        public static void EnsureSilverlightPlatformSupport(this IUnitTestLaunch launch, UnitTestManager manager)
+        public static void EnsureSilverlightPlatformSupport(this IUnitTestLaunch launch, UnitTestProviders providers)
         {
             var runs = launch.GetRuns();
 
@@ -16,14 +16,14 @@ namespace AgUnit.Runner.Resharper60.UnitTestFramework.SilverlightPlatform
             {
                 foreach (var sequence in run.GetSequences().ToArray())
                 {
-                    ConvertToSilverlightSequenceIfNecessary(sequence, run, launch, manager);
+                    ConvertToSilverlightSequenceIfNecessary(sequence, run, launch, providers);
                 }
             }
 
             launch.RemoveEmptyRuns();
         }
 
-        private static void ConvertToSilverlightSequenceIfNecessary(IList<UnitTestTask> sequence, UnitTestRun run, IUnitTestLaunch launch, UnitTestManager manager)
+        private static void ConvertToSilverlightSequenceIfNecessary(IList<UnitTestTask> sequence, UnitTestRun run, IUnitTestLaunch launch, UnitTestProviders providers)
         {
             if (!sequence.IsSilverlightSequence())
             {
@@ -32,16 +32,16 @@ namespace AgUnit.Runner.Resharper60.UnitTestFramework.SilverlightPlatform
                 {
                     run.GetSequences().Remove(sequence);
 
-                    CreateSilverlightSequence(sequence, launch, manager, silverlightProject);
+                    CreateSilverlightSequence(sequence, launch, providers, silverlightProject);
                 }
             }
         }
 
-        private static void CreateSilverlightSequence(IList<UnitTestTask> sequence, IUnitTestLaunch launch, UnitTestManager manager, IProject silverlightProject)
+        private static void CreateSilverlightSequence(IList<UnitTestTask> sequence, IUnitTestLaunch launch, UnitTestProviders providers, IProject silverlightProject)
         {
             var silverlightRun = launch.GetOrCreateSilverlightRun(silverlightProject.PlatformID);
 
-            sequence.AddSilverlightUnitTestTask(silverlightProject, manager);
+            sequence.AddSilverlightUnitTestTask(silverlightProject, providers);
             sequence.RemoveAssemblyLoadTasks();
 
             silverlightRun.AddTaskSequence(sequence);

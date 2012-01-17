@@ -5,18 +5,18 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{812656A6-E7CC-4D51-993B-AC3592D7F753}</ProjectGuid>
+    <ProjectGuid>{0B3D653F-557A-427B-9369-286983082DE7}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>AgUnit.Runner.Resharper60.TaskRunner</RootNamespace>
-    <AssemblyName>AgUnit.Runner.Resharper60.TaskRunner</AssemblyName>
+    <AssemblyName>AgUnit.Runner.Resharper61.TaskRunner</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
-    <ReferencePath>$(Registry:HKEY_LOCAL_MACHINE\SOFTWARE\JetBrains\ReSharper\v6.0\vs10.0@InstallDir)</ReferencePath>
+    <ReferencePath>$(Registry:HKEY_LOCAL_MACHINE\SOFTWARE\JetBrains\ReSharper\v6.1\vs10.0@InstallDir)</ReferencePath>
     <StartAction>Program</StartAction>
     <StartProgram>$(DevEnvDir)devenv.exe</StartProgram>
-    <StartArguments>/ReSharper.Plugin AgUnit.Runner.Resharper60.dll /ReSharper.LogFile C:\resharper.log /ReSharper.LogLevel Verbose ..\src\DummyTests\VS2010\DummyTests.sln</StartArguments>
+    <StartArguments>/ReSharper.Plugin AgUnit.Runner.Resharper61.dll /ReSharper.LogFile C:\resharper.log /ReSharper.LogLevel Verbose ..\src\DummyTests\VS2010\DummyTests.sln</StartArguments>
     <OutputPath>..\..\output\</OutputPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -47,7 +47,7 @@
       <SpecificVersion>False</SpecificVersion>
       <Private>False</Private>
     </Reference>
-    <Reference Include="JetBrains.ReSharper.UnitTestRunner.MSTest2010">
+    <Reference Include="JetBrains.ReSharper.UnitTestRunner.MSTest10">
       <SpecificVersion>False</SpecificVersion>
       <Private>False</Private>
     </Reference>
@@ -61,7 +61,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\AgUnit.Runner.Resharper60\Properties\ProjectInfo.cs">
+    <Compile Include="..\AgUnit.Runner.Resharper61\Properties\ProjectInfo.cs">
       <Link>Properties\ProjectInfo.cs</Link>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -96,9 +96,9 @@
       <Name>StatLight.Core</Name>
       <Private>True</Private>
     </ProjectReference>
-    <ProjectReference Include="..\AgUnit.Runner.Resharper60\AgUnit.Runner.Resharper60.csproj">
-      <Project>{7FB3C508-1FDC-4664-962C-9BCBC3243595}</Project>
-      <Name>AgUnit.Runner.Resharper60</Name>
+    <ProjectReference Include="..\AgUnit.Runner.Resharper61\AgUnit.Runner.Resharper61.csproj">
+      <Project>{28FD8454-6A5C-4A77-9A53-860718C80F02}</Project>
+      <Name>AgUnit.Runner.Resharper61</Name>
       <Private>False</Private>
     </ProjectReference>
   </ItemGroup>

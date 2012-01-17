@@ -4,6 +4,7 @@ extern alias mstestlegacy;
 using System;
 using System.Linq;
 using AgUnit.Runner.Resharper60.Util;
+using JetBrains.Application;
 using JetBrains.Metadata.Reader.API;
 using JetBrains.Metadata.Utils;
 using JetBrains.ProjectModel;
@@ -12,6 +13,8 @@ using MsTest10MetadataExplorer = mstest10::JetBrains.ReSharper.UnitTestProvider.
 using MsTestLegacyMetadataExplorer = mstestlegacy::JetBrains.ReSharper.UnitTestProvider.MSTest.MsTestMetadataExplorer;
 using MsTest10Provider = mstest10::JetBrains.ReSharper.UnitTestProvider.MSTest.MsTestProvider;
 using MsTestLegacyProvider = mstestlegacy::JetBrains.ReSharper.UnitTestProvider.MSTest.MsTestProvider;
+using MsTest10ElementFactory = mstest10::JetBrains.ReSharper.UnitTestProvider.MSTest.MsTestElementFactory;
+using MsTestLegacyElementFactory = mstestlegacy::JetBrains.ReSharper.UnitTestProvider.MSTest.MsTestElementFactory;
 
 namespace AgUnit.Runner.Resharper60.UnitTestProvider.MSTest
 {
@@ -21,18 +24,25 @@ namespace AgUnit.Runner.Resharper60.UnitTestProvider.MSTest
         private const string DotNetMsTestAssemblyName = "Microsoft.VisualStudio.QualityTools.UnitTestFramework";
         private const string SilverlightMsTestAssemblyName = "Microsoft.VisualStudio.QualityTools.UnitTesting.Silverlight";
 
+        private readonly IShellLocks shellLocks;
         private readonly MsTest10Provider msTest10Provider;
         private readonly MsTestLegacyProvider msTestLegacyProvider;
+        private readonly MsTest10ElementFactory msTest10ElementFactory;
+        private readonly MsTestLegacyElementFactory msTestLegacyElementFactory;
 
         public IUnitTestProvider Provider
         {
             get { return msTest10Provider as IUnitTestProvider ?? msTestLegacyProvider; }
         }
 
-        public SilverlightMsTestMetadataExplorer(MsTest10Provider msTest10Provider = null, MsTestLegacyProvider msTestLegacyProvider = null)
+        public SilverlightMsTestMetadataExplorer(IShellLocks shellLocks, MsTest10Provider msTest10Provider = null, MsTestLegacyProvider msTestLegacyProvider = null,
+            MsTest10ElementFactory msTest10ElementFactory = null, MsTestLegacyElementFactory msTestLegacyElementFactory = null)
         {
+            this.shellLocks = shellLocks;
             this.msTest10Provider = msTest10Provider;
             this.msTestLegacyProvider = msTestLegacyProvider;
+            this.msTest10ElementFactory = msTest10ElementFactory;
+            this.msTestLegacyElementFactory = msTestLegacyElementFactory;
         }
 
         public void ExploreAssembly(IProject project, IMetadataAssembly assembly, UnitTestElementConsumer consumer)
@@ -45,11 +55,11 @@ namespace AgUnit.Runner.Resharper60.UnitTestProvider.MSTest
                 {
                     if (msTest10Provider != null)
                     {
-                        new MsTest10MetadataExplorer(msTest10Provider, project, consumer).ExploreAssembly(assembly);
+                        new MsTest10MetadataExplorer(msTest10ElementFactory, project, shellLocks, consumer).ExploreAssembly(assembly);
                     }   
                     else if (msTestLegacyProvider != null)
                     {
-                        new MsTestLegacyMetadataExplorer(msTestLegacyProvider, project, consumer).ExploreAssembly(assembly);
+                        new MsTestLegacyMetadataExplorer(msTestLegacyElementFactory, project, shellLocks, consumer).ExploreAssembly(assembly);
                     }
                 }
                 finally
