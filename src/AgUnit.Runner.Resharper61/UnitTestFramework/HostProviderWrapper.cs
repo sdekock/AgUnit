@@ -1,5 +1,7 @@
 extern alias util;
 using AgUnit.Runner.Resharper60.UnitTestFramework.SilverlightPlatform;
+using JetBrains.ProjectModel;
+using JetBrains.ReSharper.UnitTestExplorer;
 using JetBrains.ReSharper.UnitTestFramework;
 
 namespace AgUnit.Runner.Resharper60.UnitTestFramework
@@ -34,16 +36,17 @@ namespace AgUnit.Runner.Resharper60.UnitTestFramework
             return WrappedHostProvider.Available(element);
         }
 
-        public ITaskRunnerHostController CreateHostController(UnitTestManager manager, UnitTestSessionManager sessionManager, IUnitTestLaunch launch, string remotingAddress)
+        public ITaskRunnerHostController CreateHostController(ISolution solution, IUnitTestSessionManager sessionManager, IUnitTestLaunch launch, string remotingAddress)
         {
-            launch.EnsureSilverlightPlatformSupport(manager);
+            var providers = solution.GetComponent<UnitTestProviders>();
+            launch.EnsureSilverlightPlatformSupport(providers);
 
-            return CreateWrappedHostController(manager, sessionManager, launch, remotingAddress);
+            return CreateWrappedHostController(solution, sessionManager, launch, remotingAddress);
         }
 
-        protected virtual ITaskRunnerHostController CreateWrappedHostController(UnitTestManager manager, UnitTestSessionManager sessionManager, IUnitTestLaunch launch, string remotingAddress)
+        protected virtual ITaskRunnerHostController CreateWrappedHostController(ISolution solution, IUnitTestSessionManager sessionManager, IUnitTestLaunch launch, string remotingAddress)
         {
-            return WrappedHostProvider.CreateHostController(manager, sessionManager, launch, remotingAddress);
+            return WrappedHostProvider.CreateHostController(solution, sessionManager, launch, remotingAddress);
         }
     }
 }   

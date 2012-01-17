@@ -24,14 +24,14 @@ namespace AgUnit.Runner.Resharper60.UnitTestProvider.XUnit
         private readonly IUnitTestProvider provider;
         private readonly bool xUnitInstalled = true;
 
-        public SilverlightXunitTestFileExplorer(ISolution solution)
+        public SilverlightXunitTestFileExplorer(UnitTestProviders providers)
         {
-            provider = UnitTestManager.GetInstance(solution).GetProvider(ProviderId);
+            provider = providers.GetProvider(ProviderId);
 
             if (provider == null)
             {
                 xUnitInstalled = false;
-                provider = UnitTestManager.GetInstance(solution).GetProvider(SilverlightUnitTestProvider.RunnerId);
+                provider = providers.GetProvider(SilverlightUnitTestProvider.RunnerId);
             }
         }
 
