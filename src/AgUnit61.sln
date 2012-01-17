@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgUnit.Runner.Resharper61", "AgUnit.Runner.Resharper60\AgUnit.Runner.Resharper61.csproj", "{28FD8454-6A5C-4A77-9A53-860718C80F02}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgUnit.Runner.Resharper61", "AgUnit.Runner.Resharper61\AgUnit.Runner.Resharper61.csproj", "{28FD8454-6A5C-4A77-9A53-860718C80F02}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgUnit.Runner.Resharper61.TaskRunner", "AgUnit.Runner.Resharper60.TaskRunner\AgUnit.Runner.Resharper61.TaskRunner.csproj", "{0B3D653F-557A-427B-9369-286983082DE7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgUnit.Runner.Resharper61.TaskRunner", "AgUnit.Runner.Resharper61.TaskRunner\AgUnit.Runner.Resharper61.TaskRunner.csproj", "{0B3D653F-557A-427B-9369-286983082DE7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StatLight.Core", "..\lib\sl\StatLight\src\StatLight.Core\StatLight.Core.csproj", "{AA6F387F-BB41-4FA8-B38A-7037A7C59716}"
 EndProject

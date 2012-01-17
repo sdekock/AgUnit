@@ -28,6 +28,6 @@ using JetBrains.Application.PluginSupport;
 
 // Plugin info for ReSharper
 
-[assembly: PluginTitle("AgUnit 0.4.2 for R# 6.0")]
-[assembly: PluginDescription("AgUnit 0.4.2 for R# 6.0 - http://agunit.codeplex.com")]
+[assembly: PluginTitle("AgUnit 0.4.2 for R# 6.1")]
+[assembly: PluginDescription("AgUnit 0.4.2 for R# 6.1 - http://agunit.codeplex.com")]
 [assembly: PluginVendor("AgUnit authors - http://agunit.codeplex.com")]

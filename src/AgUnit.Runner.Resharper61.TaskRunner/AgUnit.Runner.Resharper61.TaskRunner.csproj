@@ -61,7 +61,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\AgUnit.Runner.Resharper60\Properties\ProjectInfo.cs">
+    <Compile Include="..\AgUnit.Runner.Resharper61\Properties\ProjectInfo.cs">
       <Link>Properties\ProjectInfo.cs</Link>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -96,7 +96,7 @@
       <Name>StatLight.Core</Name>
       <Private>True</Private>
     </ProjectReference>
-    <ProjectReference Include="..\AgUnit.Runner.Resharper60\AgUnit.Runner.Resharper61.csproj">
+    <ProjectReference Include="..\AgUnit.Runner.Resharper61\AgUnit.Runner.Resharper61.csproj">
       <Project>{28FD8454-6A5C-4A77-9A53-860718C80F02}</Project>
       <Name>AgUnit.Runner.Resharper61</Name>
       <Private>False</Private>
