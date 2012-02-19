@@ -1,8 +1,8 @@
-using AgUnit.Runner.Resharper60.TaskRunner.UnitTestRunner.Silverlight.Providers;
+using AgUnit.Runner.Resharper61.TaskRunner.UnitTestRunner.Silverlight.Providers;
 using JetBrains.ReSharper.TaskRunnerFramework;
 using JetBrains.ReSharper.UnitTestRunner.nUnit;
 
-namespace AgUnit.Runner.Resharper60.TaskRunner.UnitTestProvider.nUnit
+namespace AgUnit.Runner.Resharper61.TaskRunner.UnitTestProvider.nUnit
 {
     public class NUnitMethodTaskProvider : IMethodTaskProvider
     {

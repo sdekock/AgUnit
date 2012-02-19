@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
-using AgUnit.Runner.Resharper60.UnitTestFramework.Silverlight;
+using AgUnit.Runner.Resharper61.UnitTestFramework.Silverlight;
 
-namespace AgUnit.Runner.Resharper60.TaskRunner.UnitTestRunner.Silverlight.Execution
+namespace AgUnit.Runner.Resharper61.TaskRunner.UnitTestRunner.Silverlight.Execution
 {
     public class SilverlightTask
     {

@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using AgUnit.Runner.Resharper60.TaskRunner.UnitTestRunner.Silverlight.Execution;
-using AgUnit.Runner.Resharper60.UnitTestFramework.Silverlight;
+using AgUnit.Runner.Resharper61.TaskRunner.UnitTestRunner.Silverlight.Execution;
+using AgUnit.Runner.Resharper61.UnitTestFramework.Silverlight;
 
-namespace AgUnit.Runner.Resharper60.TaskRunner.UnitTestRunner.Silverlight.Providers
+namespace AgUnit.Runner.Resharper61.TaskRunner.UnitTestRunner.Silverlight.Providers
 {
     public static class TaskNodeExtensions
     {

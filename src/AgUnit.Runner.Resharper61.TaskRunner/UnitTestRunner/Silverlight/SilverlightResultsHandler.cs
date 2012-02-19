@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using AgUnit.Runner.Resharper60.TaskRunner.UnitTestRunner.Silverlight.Execution;
+using AgUnit.Runner.Resharper61.TaskRunner.UnitTestRunner.Silverlight.Execution;
 using JetBrains.ReSharper.TaskRunnerFramework;
 using StatLight.Core.Events;
 
-namespace AgUnit.Runner.Resharper60.TaskRunner.UnitTestRunner.Silverlight
+namespace AgUnit.Runner.Resharper61.TaskRunner.UnitTestRunner.Silverlight
 {
     public class SilverlightResultsHandler : ITestingReportEvents,
         IListener<TestExecutionClassBeginClientEvent>,

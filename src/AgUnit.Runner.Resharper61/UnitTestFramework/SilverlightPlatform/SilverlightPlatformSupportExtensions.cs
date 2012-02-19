@@ -4,7 +4,7 @@ using JetBrains.ProjectModel;
 using JetBrains.ReSharper.UnitTestExplorer;
 using JetBrains.ReSharper.UnitTestFramework;
 
-namespace AgUnit.Runner.Resharper60.UnitTestFramework.SilverlightPlatform
+namespace AgUnit.Runner.Resharper61.UnitTestFramework.SilverlightPlatform
 {
     public static class SilverlightPlatformSupportExtensions
     {

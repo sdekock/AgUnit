@@ -1,12 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using AgUnit.Runner.Resharper60.TaskRunner.UnitTestProvider;
-using AgUnit.Runner.Resharper60.TaskRunner.UnitTestProvider.MSTest;
-using AgUnit.Runner.Resharper60.TaskRunner.UnitTestProvider.XUnit;
-using AgUnit.Runner.Resharper60.TaskRunner.UnitTestProvider.nUnit;
-using AgUnit.Runner.Resharper60.TaskRunner.UnitTestRunner.Silverlight.Execution;
-using AgUnit.Runner.Resharper60.TaskRunner.UnitTestRunner.Silverlight.Providers;
+using AgUnit.Runner.Resharper61.TaskRunner.UnitTestProvider;
+using AgUnit.Runner.Resharper61.TaskRunner.UnitTestRunner.Silverlight.Execution;
+using AgUnit.Runner.Resharper61.TaskRunner.UnitTestRunner.Silverlight.Providers;
 using JetBrains.ReSharper.TaskRunnerFramework;
 using StatLight.Core;
 using StatLight.Core.Common.Logging;
@@ -15,7 +12,7 @@ using StatLight.Core.Events;
 using StatLight.Core.Reporting;
 using TinyIoC;
 
-namespace AgUnit.Runner.Resharper60.TaskRunner.UnitTestRunner.Silverlight
+namespace AgUnit.Runner.Resharper61.TaskRunner.UnitTestRunner.Silverlight
 {
     public class SilverlightUnitTestTaskRunner : RecursiveRemoteTaskRunner
     {
@@ -40,7 +37,7 @@ namespace AgUnit.Runner.Resharper60.TaskRunner.UnitTestRunner.Silverlight
 
         public override void ExecuteRecursive(TaskExecutionNode node)
         {
-            //Debugger.Break();
+            Debugger.Break();
 
             var assemblyTaskProviders = UnitTestTaskProviderFactory.GetAssemblyTaskProviders();
             var classTaskProviders = UnitTestTaskProviderFactory.GetClassTaskProviders();

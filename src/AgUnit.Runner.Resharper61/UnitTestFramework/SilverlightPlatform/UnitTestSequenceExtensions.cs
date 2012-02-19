@@ -1,17 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
 using System.Linq;
-using AgUnit.Runner.Resharper60.UnitTestFramework.Silverlight;
-using EnvDTE;
-using JetBrains.Application;
+using AgUnit.Runner.Resharper61.UnitTestFramework.Silverlight;
 using JetBrains.ProjectModel;
 using JetBrains.ReSharper.TaskRunnerFramework;
 using JetBrains.ReSharper.UnitTestFramework;
-using JetBrains.VsIntegration.ProjectModel;
 
-namespace AgUnit.Runner.Resharper60.UnitTestFramework.SilverlightPlatform
+namespace AgUnit.Runner.Resharper61.UnitTestFramework.SilverlightPlatform
 {
     public static class UnitTestSequenceExtensions
     {

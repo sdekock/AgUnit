@@ -2,7 +2,7 @@
 using System.Xml;
 using JetBrains.ReSharper.TaskRunnerFramework;
 
-namespace AgUnit.Runner.Resharper60.UnitTestFramework.Silverlight
+namespace AgUnit.Runner.Resharper61.UnitTestFramework.Silverlight
 {
     [Serializable]
     public class SilverlightUnitTestTask : RemoteTask, IEquatable<SilverlightUnitTestTask>

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
-using System.Reflection;
-using AgUnit.Runner.Resharper60.UnitTestFramework.Silverlight;
+using AgUnit.Runner.Resharper61.UnitTestFramework.Silverlight;
 using JetBrains.Application;
 using JetBrains.Metadata.Utils;
 using JetBrains.ProjectModel;
@@ -9,7 +8,7 @@ using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.Tree;
 using JetBrains.ReSharper.UnitTestFramework;
 
-namespace AgUnit.Runner.Resharper60.UnitTestProvider.XUnit
+namespace AgUnit.Runner.Resharper61.UnitTestProvider.XUnit
 {
     // This is a modified version of the XunitTestFileExplorer from the XunitContrib project.
     // This re-enables the support for Silverlight tests.

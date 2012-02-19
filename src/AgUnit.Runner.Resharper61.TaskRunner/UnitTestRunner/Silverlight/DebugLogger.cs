@@ -1,7 +1,7 @@
 using StatLight.Core.Common.Logging;
 using StatLight.Core.Properties;
 
-namespace AgUnit.Runner.Resharper60.TaskRunner.UnitTestRunner.Silverlight
+namespace AgUnit.Runner.Resharper61.TaskRunner.UnitTestRunner.Silverlight
 {
     // TODO: Move this to StatLight
     public class DebugLogger : LoggerBase

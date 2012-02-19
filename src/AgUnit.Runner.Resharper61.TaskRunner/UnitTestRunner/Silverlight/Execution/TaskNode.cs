@@ -3,7 +3,7 @@ using System.Linq;
 using JetBrains.ReSharper.TaskRunnerFramework;
 using StatLight.Core.Events;
 
-namespace AgUnit.Runner.Resharper60.TaskRunner.UnitTestRunner.Silverlight.Execution
+namespace AgUnit.Runner.Resharper61.TaskRunner.UnitTestRunner.Silverlight.Execution
 {
     public enum TaskStatus
     {

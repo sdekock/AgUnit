@@ -8,7 +8,7 @@
     <ProjectGuid>{28FD8454-6A5C-4A77-9A53-860718C80F02}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AgUnit.Runner.Resharper60</RootNamespace>
+    <RootNamespace>AgUnit.Runner.Resharper61</RootNamespace>
     <AssemblyName>AgUnit.Runner.Resharper61</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

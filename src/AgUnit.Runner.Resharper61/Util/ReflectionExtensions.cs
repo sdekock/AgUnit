@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Reflection;
 
-namespace AgUnit.Runner.Resharper60.Util
+namespace AgUnit.Runner.Resharper61.Util
 {
     public static class ReflectionExtensions
     {

@@ -1,18 +1,16 @@
 extern alias util;
 using System;
 using System.Runtime.InteropServices;
-using AgUnit.Runner.Resharper60.UnitTestFramework.SilverlightPlatform;
-using AgUnit.Runner.Resharper60.Util;
+using AgUnit.Runner.Resharper61.UnitTestFramework.SilverlightPlatform;
+using AgUnit.Runner.Resharper61.Util;
 using EnvDTE;
-using JetBrains.ProjectModel;
 using JetBrains.ReSharper.UnitTestExplorer;
 using JetBrains.ReSharper.UnitTestFramework;
 using JetBrains.Threading;
 using Microsoft.VisualStudio.Shell.Interop;
-using util::JetBrains.Util;
 using Thread = System.Threading.Thread;
 
-namespace AgUnit.Runner.Resharper60.UnitTestFramework
+namespace AgUnit.Runner.Resharper61.UnitTestFramework
 {
     public class ExtendedDebugTaskRunnerHostController : DebugTaskRunnerHostController
     {
@@ -65,7 +63,7 @@ namespace AgUnit.Runner.Resharper60.UnitTestFramework
 
         private void CallThreadProc()
         {
-            Logger.Catch(() => this.CallMethod("ThreadProc"));
+            util::JetBrains.Util.Logger.Catch(() => this.CallMethod("ThreadProc"));
         }
     }
 }

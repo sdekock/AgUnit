@@ -1,6 +1,6 @@
-using AgUnit.Runner.Resharper60.TaskRunner.UnitTestRunner.Silverlight.Providers;
+using AgUnit.Runner.Resharper61.TaskRunner.UnitTestRunner.Silverlight.Providers;
 
-namespace AgUnit.Runner.Resharper60.TaskRunner.UnitTestRunner.Silverlight.Execution
+namespace AgUnit.Runner.Resharper61.TaskRunner.UnitTestRunner.Silverlight.Execution
 {
     public class AssemblyTask
     {

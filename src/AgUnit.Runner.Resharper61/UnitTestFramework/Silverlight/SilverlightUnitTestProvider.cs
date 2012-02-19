@@ -7,13 +7,13 @@ using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.TaskRunnerFramework;
 using JetBrains.ReSharper.UnitTestFramework;
 
-namespace AgUnit.Runner.Resharper60.UnitTestFramework.Silverlight
+namespace AgUnit.Runner.Resharper61.UnitTestFramework.Silverlight
 {
     [UnitTestProvider]
     public class SilverlightUnitTestProvider : IUnitTestProvider
     {
         public const string RunnerId = "Silverlight";
-        public const string RunnerTypeName = "AgUnit.Runner.Resharper60.TaskRunner.UnitTestRunner.Silverlight.SilverlightUnitTestTaskRunner";
+        public const string RunnerTypeName = "AgUnit.Runner.Resharper61.TaskRunner.UnitTestRunner.Silverlight.SilverlightUnitTestTaskRunner";
         public static readonly string RunnerCodeBase = GetRunnerCodeBase();
 
         private static string GetRunnerCodeBase()

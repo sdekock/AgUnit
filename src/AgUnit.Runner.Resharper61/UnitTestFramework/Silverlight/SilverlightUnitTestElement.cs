@@ -5,7 +5,7 @@ using JetBrains.ProjectModel;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.UnitTestFramework;
 
-namespace AgUnit.Runner.Resharper60.UnitTestFramework.Silverlight
+namespace AgUnit.Runner.Resharper61.UnitTestFramework.Silverlight
 {
     public class SilverlightUnitTestElement : IUnitTestElement
     {

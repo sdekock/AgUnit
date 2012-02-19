@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using AgUnit.Runner.Resharper60.Util;
+using AgUnit.Runner.Resharper61.Util;
 using JetBrains.Application;
 using JetBrains.ReSharper.UnitTestExplorer;
 using JetBrains.ReSharper.UnitTestFramework;
 
-namespace AgUnit.Runner.Resharper60.UnitTestFramework
+namespace AgUnit.Runner.Resharper61.UnitTestFramework
 {
     [ShellComponent]
     public class HostProviderInterceptor

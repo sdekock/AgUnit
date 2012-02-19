@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
-using AgUnit.Runner.Resharper60.TaskRunner.UnitTestProvider.MSTest;
-using AgUnit.Runner.Resharper60.TaskRunner.UnitTestProvider.XUnit;
-using AgUnit.Runner.Resharper60.TaskRunner.UnitTestProvider.nUnit;
-using AgUnit.Runner.Resharper60.TaskRunner.UnitTestRunner.Silverlight.Providers;
+using AgUnit.Runner.Resharper61.TaskRunner.UnitTestProvider.MSTest;
+using AgUnit.Runner.Resharper61.TaskRunner.UnitTestProvider.XUnit;
+using AgUnit.Runner.Resharper61.TaskRunner.UnitTestProvider.nUnit;
+using AgUnit.Runner.Resharper61.TaskRunner.UnitTestRunner.Silverlight.Providers;
 
-namespace AgUnit.Runner.Resharper60.TaskRunner.UnitTestProvider
+namespace AgUnit.Runner.Resharper61.TaskRunner.UnitTestProvider
 {
     public static class UnitTestTaskProviderFactory
     {

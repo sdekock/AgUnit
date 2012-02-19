@@ -4,7 +4,7 @@ using JetBrains.ProjectModel;
 using JetBrains.ReSharper.UnitTestFramework;
 using JetBrains.VsIntegration.ProjectModel;
 
-namespace AgUnit.Runner.Resharper60.UnitTestFramework.SilverlightPlatform
+namespace AgUnit.Runner.Resharper61.UnitTestFramework.SilverlightPlatform
 {
     public static class ProjectExtensions
     {
