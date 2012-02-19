@@ -69,6 +69,7 @@
     <Compile Include="UnitTestProvider\nUnit\NUnitClassTaskProvider.cs" />
     <Compile Include="UnitTestProvider\nUnit\NUnitMethodTaskProvider.cs" />
     <Compile Include="UnitTestProvider\MSTest\MsTestAssemblyTaskProvider.cs" />
+    <Compile Include="UnitTestProvider\UnitTestTaskProviderFactory.cs" />
     <Compile Include="UnitTestProvider\XUnit\XUnitAssemblyTaskProvider.cs" />
     <Compile Include="UnitTestProvider\XUnit\XUnitClassTaskProvider.cs" />
     <Compile Include="UnitTestProvider\XUnit\XUnitMethodTaskProvider.cs" />

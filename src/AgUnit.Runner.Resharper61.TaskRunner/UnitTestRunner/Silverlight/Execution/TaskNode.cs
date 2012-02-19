@@ -1,7 +1,7 @@
 using System;
 using System.Linq;
 using JetBrains.ReSharper.TaskRunnerFramework;
-using StatLight.Client.Harness.Events;
+using StatLight.Core.Events;
 
 namespace AgUnit.Runner.Resharper60.TaskRunner.UnitTestRunner.Silverlight.Execution
 {

@@ -2,9 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using AgUnit.Runner.Resharper60.TaskRunner.UnitTestRunner.Silverlight.Execution;
-using EventAggregatorNet;
 using JetBrains.ReSharper.TaskRunnerFramework;
-using StatLight.Client.Harness.Events;
 using StatLight.Core.Events;
 
 namespace AgUnit.Runner.Resharper60.TaskRunner.UnitTestRunner.Silverlight
@@ -23,7 +21,7 @@ namespace AgUnit.Runner.Resharper60.TaskRunner.UnitTestRunner.Silverlight
             TestMethods = testMethods;
         }
 
-        public void Handle(TestCaseResult message)
+        public void Handle(TestCaseResultServerEvent message)
         {
             if (message.MethodName != null)
             {
@@ -107,7 +105,7 @@ namespace AgUnit.Runner.Resharper60.TaskRunner.UnitTestRunner.Silverlight
             }
         }
 
-        private ClassTask GetTestClass(TestExecutionClass message)
+        private ClassTask GetTestClass(TestExecutionClassClientEvent message)
         {
             var fullClassName = string.Format("{0}.{1}", message.NamespaceName, message.ClassName);
             return TestClasses.FirstOrDefault(c => c.GetFullClassName() == fullClassName);

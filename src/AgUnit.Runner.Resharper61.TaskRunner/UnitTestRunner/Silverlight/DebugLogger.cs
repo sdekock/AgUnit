@@ -1,4 +1,4 @@
-using StatLight.Core.Common;
+using StatLight.Core.Common.Logging;
 using StatLight.Core.Properties;
 
 namespace AgUnit.Runner.Resharper60.TaskRunner.UnitTestRunner.Silverlight

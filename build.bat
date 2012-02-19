@@ -1,5 +1,5 @@
 @echo off
-set Configuration=Debug
+set Configuration=Release
 
 call "%vs100comntools%\vsvars32.bat"
 

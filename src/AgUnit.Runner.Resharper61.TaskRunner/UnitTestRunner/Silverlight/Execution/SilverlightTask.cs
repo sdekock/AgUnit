@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using AgUnit.Runner.Resharper60.UnitTestFramework.Silverlight;
 
 namespace AgUnit.Runner.Resharper60.TaskRunner.UnitTestRunner.Silverlight.Execution
@@ -24,17 +25,17 @@ namespace AgUnit.Runner.Resharper60.TaskRunner.UnitTestRunner.Silverlight.Execut
 
         public bool HasXapPath()
         {
-            return !string.IsNullOrWhiteSpace(GetXapPath());
+            return !string.IsNullOrWhiteSpace(GetTask().XapPath);
         }
 
-        public string GetXapPath()
+        public IEnumerable<string> GetXapPaths()
         {
-            return GetTask().XapPath;
+            return HasXapPath() ? new[] { GetTask().XapPath } : new string[0];
         }
 
-        public string GetDllPath()
+        public IEnumerable<string> GetDllPaths()
         {
-            return GetTask().DllPath;
+            return !HasXapPath() ? new[] { GetTask().DllPath } : new string[0];
         }
     }
 }

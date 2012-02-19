@@ -1,18 +1,19 @@
 ﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
+using AgUnit.Runner.Resharper60.TaskRunner.UnitTestProvider;
 using AgUnit.Runner.Resharper60.TaskRunner.UnitTestProvider.MSTest;
 using AgUnit.Runner.Resharper60.TaskRunner.UnitTestProvider.XUnit;
 using AgUnit.Runner.Resharper60.TaskRunner.UnitTestProvider.nUnit;
 using AgUnit.Runner.Resharper60.TaskRunner.UnitTestRunner.Silverlight.Execution;
 using AgUnit.Runner.Resharper60.TaskRunner.UnitTestRunner.Silverlight.Providers;
-using EventAggregatorNet;
 using JetBrains.ReSharper.TaskRunnerFramework;
-using StatLight.Core.Common;
+using StatLight.Core;
+using StatLight.Core.Common.Logging;
 using StatLight.Core.Configuration;
-using StatLight.Core.Runners;
-using StatLight.Core.WebBrowser;
+using StatLight.Core.Events;
+using StatLight.Core.Reporting;
+using TinyIoC;
 
 namespace AgUnit.Runner.Resharper60.TaskRunner.UnitTestRunner.Silverlight
 {
@@ -41,26 +42,11 @@ namespace AgUnit.Runner.Resharper60.TaskRunner.UnitTestRunner.Silverlight
         {
             //Debugger.Break();
 
-            var assemblyProviders = new IAssemblyTaskProvider[]
-            {
-                new MsTestAssemblyTaskProvider(),
-                new NUnitAssemblyTaskProvider(),
-                new XUnitAssemblyTaskProvider()
-            };
-            var classProviders = new IClassTaskProvider[]
-            {
-                new MsTestClassTaskProvider(),
-                new NUnitClassTaskProvider(),
-                new XUnitClassTaskProvider()
-            };
-            var methodProviders = new IMethodTaskProvider[]
-            {
-                new MsTestMethodTaskProvider(),
-                new NUnitMethodTaskProvider(),
-                new XUnitMethodTaskProvider()
-            };
+            var assemblyTaskProviders = UnitTestTaskProviderFactory.GetAssemblyTaskProviders();
+            var classTaskProviders = UnitTestTaskProviderFactory.GetClassTaskProviders();
+            var methodTaskProviders = UnitTestTaskProviderFactory.GetMethodTaskProviders();
 
-            var taskEnvironment = new TaskEnvironment(Server, assemblyProviders, classProviders, methodProviders);
+            var taskEnvironment = new TaskEnvironment(Server, assemblyTaskProviders, classTaskProviders, methodTaskProviders);
             var taskNode = new TaskNode(node, taskEnvironment);
 
             foreach (var silverlightTaskNode in taskNode.GetSilverlightTasks())
@@ -74,12 +60,25 @@ namespace AgUnit.Runner.Resharper60.TaskRunner.UnitTestRunner.Silverlight
             var testMethods = silverlightTask.Node.GetMethodTasks().ToArray();
             var testClasses = silverlightTask.Node.GetClassTasks().ToArray();
 
-            var logger = CreateStatLightLogger();
-            var eventAggregator = CreateStatLightEventAggregator(testClasses, testMethods, logger);
-            var configuration = CreateStatLightConfiguration(silverlightTask, logger, testMethods);
-            var runner = CreateStatLightRunner(configuration, logger, eventAggregator);
+            var ioc = BootStrapStatLight(silverlightTask, testMethods);
+            SetUpSilverlightResultsHandler(ioc, testClasses, testMethods);
 
-            var testReport = runner.Run();
+            var testReports = ExecuteStatLightRun(ioc);
+        }
+
+        private static TestReportCollection ExecuteStatLightRun(TinyIoCContainer ioc)
+        {
+            var commandLineExecutionEngine = ioc.Resolve<RunnerExecutionEngine>();
+
+            return commandLineExecutionEngine.Run();
+        }
+
+        private static TinyIoCContainer BootStrapStatLight(SilverlightTask silverlightTask, MethodTask[] testMethods)
+        {
+            var inputOptions = CreateStatLightInputOptions(silverlightTask, testMethods);
+            var logger = CreateStatLightLogger();
+
+            return BootStrapper.Initialize(inputOptions, logger);
         }
 
         private static DebugLogger CreateStatLightLogger()
@@ -87,64 +86,20 @@ namespace AgUnit.Runner.Resharper60.TaskRunner.UnitTestRunner.Silverlight
             return new DebugLogger(LogChatterLevels.Full);
         }
 
-        private static EventAggregator CreateStatLightEventAggregator(IEnumerable<ClassTask> testClasses, IEnumerable<MethodTask> testMethods, ILogger logger)
+        private static InputOptions CreateStatLightInputOptions(SilverlightTask silverlightTask, MethodTask[] testMethods)
         {
-            var eventsHandler = new SilverlightResultsHandler(testClasses, testMethods);
-            var eventAggregator = EventAggregatorFactory.Create(logger);
-
-            eventAggregator.AddListener(eventsHandler);
-
-            return eventAggregator;
+            return new InputOptions()
+                .SetXapPaths(silverlightTask.GetXapPaths())
+                .SetDllPaths(silverlightTask.GetDllPaths())
+                .SetMethodsToTest(testMethods.Select(m => m.GetFullMethodName()).ToList());
         }
 
-        private static StatLightConfiguration CreateStatLightConfiguration(SilverlightTask silverlightTask, DebugLogger logger, MethodTask[] testMethods)
+        private static void SetUpSilverlightResultsHandler(TinyIoCContainer ioc, IEnumerable<ClassTask> testClasses, IEnumerable<MethodTask> testMethods)
         {
-            var configurationFactory = new StatLightConfigurationFactory(logger);
+            var silverlightResultsHandler = new SilverlightResultsHandler(testClasses, testMethods);
+            var eventSubscriptionManager = ioc.Resolve<IEventSubscriptionManager>();
 
-            return silverlightTask.HasXapPath() ?
-                CreateStatLightConfigurationForXap(configurationFactory, testMethods, silverlightTask.GetXapPath()) :
-                CreateStatLightConfigurationForDll(configurationFactory, testMethods, silverlightTask.GetDllPath());
-        }
-
-        private static StatLightConfiguration CreateStatLightConfigurationForXap(StatLightConfigurationFactory configurationFactory, IEnumerable<MethodTask> testMethods, string xapPath)
-        {
-            return configurationFactory.GetStatLightConfigurationForXap(
-                unitTestProviderType: UnitTestProviderType.Undefined, // Let StatLight figure it out
-                xapPath: xapPath,
-                microsoftTestingFrameworkVersion: null, // Let StatLight figure it out
-                methodsToTest: new Collection<string>(testMethods.Select(m => m.GetFullMethodName()).ToList()),
-                tagFilters: null,
-                numberOfBrowserHosts: 1, // Maybe you spin up 3 or 4 here if you know you're running a ton of tests
-                isRemoteRun: false,
-                queryString: "", // This is passed to the browser host page (say your test need some configuration - could be passed here - probably not a use case in ReSharper runner)
-                webBrowserType: WebBrowserType.SelfHosted,
-                forceBrowserStart: false,
-                showTestingBrowserHost: false // If you need UI support this needs to be true
-            );
-        }
-
-        private static StatLightConfiguration CreateStatLightConfigurationForDll(StatLightConfigurationFactory configurationFactory, IEnumerable<MethodTask> testMethods, string dllPath)
-        {
-            return configurationFactory.GetStatLightConfigurationForDll(
-                unitTestProviderType: UnitTestProviderType.Undefined, // Let StatLight figure it out
-                dllPath: dllPath,
-                microsoftTestingFrameworkVersion: null, // Let StatLight figure it out
-                methodsToTest: new Collection<string>(testMethods.Select(m => m.GetFullMethodName()).ToList()),
-                tagFilters: null,
-                numberOfBrowserHosts: 1, // Maybe you spin up 3 or 4 here if you know you're running a ton of tests
-                isRemoteRun: false,
-                queryString: "", // This is passed to the browser host page (say your test need some configuration - could be passed here - probably not a use case in ReSharper runner)
-                webBrowserType: WebBrowserType.SelfHosted,
-                forceBrowserStart: false,
-                showTestingBrowserHost: false // If you need UI support this needs to be true
-            );
-        }
-
-        private static IRunner CreateStatLightRunner(StatLightConfiguration config, ILogger logger, EventAggregator eventAggregator)
-        {
-            var runnerFactory = new StatLightRunnerFactory(logger, eventAggregator, eventAggregator);
-
-            return runnerFactory.CreateOnetimeConsoleRunner(config);
+            eventSubscriptionManager.AddListener(silverlightResultsHandler);
         }
     }
 }

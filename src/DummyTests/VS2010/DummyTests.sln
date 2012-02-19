@@ -19,7 +19,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DummyTests.DotNetXUnit", "D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DummyTests.Silverlight4.Library", "DummyTests.Silverlight4.Library\DummyTests.Silverlight4.Library.csproj", "{B4B7AC28-379A-4F8F-AF9D-623B1718BC37}"
 EndProject
-Project("{00000000-0000-0000-0000-000000000000}") = "DummyTests.Silverlight4.NUnit.TestDrivenProjectTemplate", "DummyTests.Silverlight4.NUnit.TestDrivenProjectTemplate\DummyTests.Silverlight4.NUnit.TestDrivenProjectTemplate.csproj", "{C9CCA388-1478-4CAB-BCCB-7686D544E640}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DummyTests.Silverlight4.NUnit.TestDrivenProjectTemplate", "DummyTests.Silverlight4.NUnit.TestDrivenProjectTemplate\DummyTests.Silverlight4.NUnit.TestDrivenProjectTemplate.csproj", "{C9CCA388-1478-4CAB-BCCB-7686D544E640}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DummyTests.Silverlight5", "DummyTests.Silverlight5\DummyTests.Silverlight5.csproj", "{98C4A7CB-A20C-45D9-A307-161DF0B38FB9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DummyTests.Silverlight5.Library", "DummyTests.Silverlight5.Library\DummyTests.Silverlight5.Library.csproj", "{DDE63C88-8ABE-4556-9DCA-387B43A23835}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -67,6 +71,14 @@ Global
 		{C9CCA388-1478-4CAB-BCCB-7686D544E640}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C9CCA388-1478-4CAB-BCCB-7686D544E640}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C9CCA388-1478-4CAB-BCCB-7686D544E640}.Release|Any CPU.Build.0 = Release|Any CPU
+		{98C4A7CB-A20C-45D9-A307-161DF0B38FB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98C4A7CB-A20C-45D9-A307-161DF0B38FB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98C4A7CB-A20C-45D9-A307-161DF0B38FB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98C4A7CB-A20C-45D9-A307-161DF0B38FB9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DDE63C88-8ABE-4556-9DCA-387B43A23835}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDE63C88-8ABE-4556-9DCA-387B43A23835}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDE63C88-8ABE-4556-9DCA-387B43A23835}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDE63C88-8ABE-4556-9DCA-387B43A23835}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
