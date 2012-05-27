@@ -25,7 +25,11 @@ namespace AgUnit.Runner.Resharper61.UnitTestFramework.SilverlightPlatform
                     {
                         var xapFileName = (string)project.Properties.Item("SilverlightProject.XapFilename").Value;
 
+#if RS70
+                        return silverlightProject.ActiveConfiguration.GetOutputDirectory(vsProjectInfo.Project.Location).Combine(xapFileName).FullPath;
+#else
                         return silverlightProject.ActiveConfiguration.OutputDirectory.Combine(xapFileName).FullPath;
+#endif
                     }
                 }
 
