@@ -70,6 +70,11 @@ namespace AgUnit.Runner.Resharper61.Util
             {
                 memberInfo = GetMemberInfoRecursive(name, targetType, getMemberInfo);
                 cache[cacheKey] = memberInfo;
+
+                if (memberInfo == null)
+                {
+                    throw new Exception(string.Format("Member '{0}' not found on type '{1}'", name, targetType.FullName));
+                }
             }
 
             return memberInfo;
