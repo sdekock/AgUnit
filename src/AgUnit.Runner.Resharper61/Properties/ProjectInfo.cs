@@ -23,11 +23,11 @@ using JetBrains.Application.PluginSupport;
 // You can specify all the values or you can default the Revision and Build Numbers 
 // by using the '*' as shown below:
 
-[assembly: AssemblyVersion("0.4.2.0")]
-[assembly: AssemblyFileVersion("0.4.2.0")]
+[assembly: AssemblyVersion("0.6.0.0")]
+[assembly: AssemblyFileVersion("0.6.0.0")]
 
 // Plugin info for ReSharper
 
-[assembly: PluginTitle("AgUnit 0.4.2 for R# 6.1")]
-[assembly: PluginDescription("AgUnit 0.4.2 for R# 6.1 - http://agunit.codeplex.com")]
+[assembly: PluginTitle("AgUnit 0.6 for R# 7.0")]
+[assembly: PluginDescription("AgUnit 0.6 for R# 7.0 - http://agunit.codeplex.com")]
 [assembly: PluginVendor("AgUnit authors - http://agunit.codeplex.com")]

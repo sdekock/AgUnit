@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Linq;
+using System.Reflection;
 using AgUnit.Runner.Resharper61.UnitTestFramework.Silverlight;
+using AgUnit.Runner.Resharper61.Util;
 using JetBrains.Application;
 using JetBrains.Metadata.Utils;
 using JetBrains.ProjectModel;
@@ -18,7 +20,6 @@ namespace AgUnit.Runner.Resharper61.UnitTestProvider.XUnit
     public class SilverlightXunitTestFileExplorer : IUnitTestFileExplorer
     {
         private const string ProviderId = "xUnit";
-        private static readonly Type XunitPsiFileExplorerType = Type.GetType("XunitContrib.Runner.ReSharper.UnitTestProvider.XunitPsiFileExplorer, xunitcontrib.runner.resharper.provider.6.0");
 
         private readonly IUnitTestProvider provider;
         private readonly bool xUnitInstalled = true;
@@ -52,10 +53,14 @@ namespace AgUnit.Runner.Resharper61.UnitTestProvider.XUnit
             if (project.GetAssemblyReferences().Any(IsSilverlightMscorlib))
                 return;
 
-            var psiFileExplorer = (IRecursiveElementProcessor)Activator.CreateInstance(XunitPsiFileExplorerType,
-                provider, consumer, psiFile, interrupted);
+            var fileExplorers = psiFile.GetProject().GetSolution().GetComponents<IUnitTestFileExplorer>();
+            var xunitTestFileExplorer = fileExplorers.Single(e => e.GetType().FullName == "XunitContrib.Runner.ReSharper.UnitTestProvider.XunitTestFileExplorer");
+            var unitTestElementFactory = xunitTestFileExplorer.GetField<object>("unitTestElementFactory");
+            var xunitPsiFileExplorerType = xunitTestFileExplorer.GetType().Assembly.GetType("XunitContrib.Runner.ReSharper.UnitTestProvider.XunitPsiFileExplorer");
+            var xunitPsiFileExplorer = (IRecursiveElementProcessor)Activator.CreateInstance(xunitPsiFileExplorerType,
+                 provider, unitTestElementFactory, consumer, psiFile, interrupted);
 
-            psiFile.ProcessDescendants(psiFileExplorer);
+            psiFile.ProcessDescendants(xunitPsiFileExplorer);
         }
 
         private static bool IsSilverlightMscorlib(IProjectToAssemblyReference reference)
