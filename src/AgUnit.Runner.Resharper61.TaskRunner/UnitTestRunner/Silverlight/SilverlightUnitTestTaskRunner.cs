@@ -1,10 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using AgUnit.Runner.Resharper61.TaskRunner.UnitTestProvider;
 using AgUnit.Runner.Resharper61.TaskRunner.UnitTestRunner.Silverlight.Execution;
 using AgUnit.Runner.Resharper61.TaskRunner.UnitTestRunner.Silverlight.Providers;
 using JetBrains.ReSharper.TaskRunnerFramework;
+using JetBrains.Util;
 using StatLight.Core;
 using StatLight.Core.Common.Logging;
 using StatLight.Core.Configuration;
@@ -39,6 +41,19 @@ namespace AgUnit.Runner.Resharper61.TaskRunner.UnitTestRunner.Silverlight
         {
             //Debugger.Break();
 
+            try
+            {
+                ExecuteSilverlightTasks(node);
+            }
+            catch (Exception e)
+            {
+                MessageBox.ShowError(e.ToString(), "AgUnit: Exception during test run");
+                throw;
+            }
+        }
+
+        private void ExecuteSilverlightTasks(TaskExecutionNode node)
+        {
             var assemblyTaskProviders = UnitTestTaskProviderFactory.GetAssemblyTaskProviders();
             var classTaskProviders = UnitTestTaskProviderFactory.GetClassTaskProviders();
             var methodTaskProviders = UnitTestTaskProviderFactory.GetMethodTaskProviders();
