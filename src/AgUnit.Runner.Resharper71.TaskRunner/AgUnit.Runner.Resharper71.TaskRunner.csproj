@@ -45,7 +45,10 @@
       <SpecificVersion>False</SpecificVersion>
       <Private>False</Private>
     </Reference>
-    <Reference Include="JetBrains.Platform.ReSharper.Util, Version=7.0.97.60, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL" />
+    <Reference Include="JetBrains.Platform.ReSharper.Util">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="JetBrains.ReSharper.TaskRunnerFramework">
       <SpecificVersion>False</SpecificVersion>
       <Private>False</Private>

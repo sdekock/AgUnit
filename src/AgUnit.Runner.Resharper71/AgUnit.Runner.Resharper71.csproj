@@ -10,13 +10,14 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>AgUnit.Runner.Resharper71</RootNamespace>
     <AssemblyName>AgUnit.Runner.Resharper71</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ReferencePath>$(Registry:HKEY_LOCAL_MACHINE\SOFTWARE\JetBrains\ReSharper\v7.1\vs11.0@InstallDir)</ReferencePath>
     <StartAction>Program</StartAction>
     <StartProgram>$(DevEnvDir)devenv.exe</StartProgram>
     <StartArguments>/ReSharper.Plugin AgUnit.Runner.Resharper71.dll /ReSharper.LogFile "..\resharper.log" /ReSharper.LogLevel Verbose ..\src\DummyTests\VS2010\DummyTests.sln</StartArguments>
     <OutputPath>..\..\output\</OutputPath>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -25,6 +26,7 @@
     <DefineConstants>TRACE;DEBUG;RS71</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -32,6 +34,7 @@
     <DefineConstants>TRACE;RS71</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EnvDTE, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
@@ -129,7 +132,9 @@
       <SpecificVersion>False</SpecificVersion>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.CSharp">
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Microsoft.VisualStudio.Shell.Interop, Version=7.1.40304.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
       <SpecificVersion>False</SpecificVersion>
       <Private>False</Private>
