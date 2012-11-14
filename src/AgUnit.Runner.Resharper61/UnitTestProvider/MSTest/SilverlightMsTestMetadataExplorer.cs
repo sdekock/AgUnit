@@ -1,4 +1,4 @@
-﻿#if !RS70
+﻿#if !RS70 && !RS71
 
 extern alias mstestlegacy;
 extern alias mstest10;

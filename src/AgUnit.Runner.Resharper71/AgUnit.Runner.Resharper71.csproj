@@ -1,0 +1,215 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{528C588D-A009-4896-BDC1-C9AE927EB477}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AgUnit.Runner.Resharper71</RootNamespace>
+    <AssemblyName>AgUnit.Runner.Resharper71</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ReferencePath>$(Registry:HKEY_LOCAL_MACHINE\SOFTWARE\JetBrains\ReSharper\v7.1\vs11.0@InstallDir)</ReferencePath>
+    <StartAction>Program</StartAction>
+    <StartProgram>$(DevEnvDir)devenv.exe</StartProgram>
+    <StartArguments>/ReSharper.Plugin AgUnit.Runner.Resharper71.dll /ReSharper.LogFile "..\resharper.log" /ReSharper.LogLevel Verbose ..\src\DummyTests\VS2010\DummyTests.sln</StartArguments>
+    <OutputPath>..\..\output\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineConstants>TRACE;DEBUG;RS71</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineConstants>TRACE;RS71</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EnvDTE, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="JetBrains.Platform.ReSharper.Metadata">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="JetBrains.Platform.ReSharper.ProjectModel">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="JetBrains.Platform.ReSharper.Shell">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="JetBrains.Platform.ReSharper.UI">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="JetBrains.Platform.ReSharper.Util">
+      <SpecificVersion>False</SpecificVersion>
+      <Aliases>util</Aliases>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="JetBrains.Platform.ReSharper.VisualStudio.Core">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="JetBrains.Platform.ReSharper.VisualStudio.v11">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="JetBrains.ReSharper.Feature.Services">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="JetBrains.ReSharper.Features.Shared">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="JetBrains.ReSharper.Psi">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="JetBrains.ReSharper.Resources">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="JetBrains.ReSharper.TaskRunnerFramework">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="JetBrains.ReSharper.UnitTestExplorer">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="JetBrains.ReSharper.UnitTestFramework">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="JetBrains.ReSharper.UnitTestProvider.MSTest">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+      <Aliases>mstestlegacy</Aliases>
+    </Reference>
+    <Reference Include="JetBrains.ReSharper.UnitTestRunner.MSTest">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+      <Aliases>mstestlegacy</Aliases>
+    </Reference>
+    <Reference Include="JetBrains.ReSharper.UnitTestProvider.MSTest10">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+      <Aliases>mstest10</Aliases>
+    </Reference>
+    <Reference Include="JetBrains.ReSharper.UnitTestRunner.MSTest10">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+      <Aliases>mstest10</Aliases>
+    </Reference>
+    <Reference Include="JetBrains.ReSharper.UnitTestProvider.MSTest11">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+      <Aliases>mstest11</Aliases>
+    </Reference>
+    <Reference Include="JetBrains.ReSharper.UnitTestRunner.MSTest11">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+      <Aliases>mstest11</Aliases>
+    </Reference>
+    <Reference Include="JetBrains.Platform.ReSharper.ComponentModel">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.VisualStudio.Shell.Interop, Version=7.1.40304.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.Shell.Interop.8.0, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.XML" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\AgUnit.Runner.Resharper61\Properties\ProjectInfo.cs">
+      <Link>Properties\ProjectInfo.cs</Link>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="..\AgUnit.Runner.Resharper61\UnitTestFramework\ExtendedDebugHostProvider.cs">
+      <Link>UnitTestFramework\ExtendedDebugHostProvider.cs</Link>
+    </Compile>
+    <Compile Include="..\AgUnit.Runner.Resharper61\UnitTestFramework\ExtendedDebugTaskRunnerHostController.cs">
+      <Link>UnitTestFramework\ExtendedDebugTaskRunnerHostController.cs</Link>
+    </Compile>
+    <Compile Include="..\AgUnit.Runner.Resharper61\UnitTestFramework\HostProviderInterceptor.cs">
+      <Link>UnitTestFramework\HostProviderInterceptor.cs</Link>
+    </Compile>
+    <Compile Include="..\AgUnit.Runner.Resharper61\UnitTestFramework\HostProviderWrapper.cs">
+      <Link>UnitTestFramework\HostProviderWrapper.cs</Link>
+    </Compile>
+    <Compile Include="..\AgUnit.Runner.Resharper61\UnitTestFramework\SilverlightPlatform\ProjectExtensions.cs">
+      <Link>UnitTestFramework\SilverlightPlatform\ProjectExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\AgUnit.Runner.Resharper61\UnitTestFramework\SilverlightPlatform\SilverlightPlatformSupportExtensions.cs">
+      <Link>UnitTestFramework\SilverlightPlatform\SilverlightPlatformSupportExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\AgUnit.Runner.Resharper61\UnitTestFramework\SilverlightPlatform\UnitTestLaunchExtensions.cs">
+      <Link>UnitTestFramework\SilverlightPlatform\UnitTestLaunchExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\AgUnit.Runner.Resharper61\UnitTestFramework\SilverlightPlatform\UnitTestRunExtensions.cs">
+      <Link>UnitTestFramework\SilverlightPlatform\UnitTestRunExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\AgUnit.Runner.Resharper61\UnitTestFramework\SilverlightPlatform\UnitTestSequenceExtensions.cs">
+      <Link>UnitTestFramework\SilverlightPlatform\UnitTestSequenceExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\AgUnit.Runner.Resharper61\UnitTestFramework\Silverlight\SilverlightUnitTestElement.cs">
+      <Link>UnitTestFramework\Silverlight\SilverlightUnitTestElement.cs</Link>
+    </Compile>
+    <Compile Include="..\AgUnit.Runner.Resharper61\UnitTestFramework\Silverlight\SilverlightUnitTestProvider.cs">
+      <Link>UnitTestFramework\Silverlight\SilverlightUnitTestProvider.cs</Link>
+    </Compile>
+    <Compile Include="..\AgUnit.Runner.Resharper61\UnitTestFramework\Silverlight\SilverlightUnitTestTask.cs">
+      <Link>UnitTestFramework\Silverlight\SilverlightUnitTestTask.cs</Link>
+    </Compile>
+    <Compile Include="..\AgUnit.Runner.Resharper61\UnitTestProvider\MSTest\SilverlightMsTestMetadataExplorer.cs">
+      <Link>UnitTestProvider\MSTest\SilverlightMsTestMetadataExplorer.cs</Link>
+    </Compile>
+    <Compile Include="..\AgUnit.Runner.Resharper61\UnitTestProvider\XUnit\SilverlightXunitTestFileExplorer.cs">
+      <Link>UnitTestProvider\XUnit\SilverlightXunitTestFileExplorer.cs</Link>
+    </Compile>
+    <Compile Include="..\AgUnit.Runner.Resharper61\Util\ReflectionExtensions.cs">
+      <Link>Util\ReflectionExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\AgUnit.Runner.Resharper61\Util\Tuple.cs">
+      <Link>Util\Tuple.cs</Link>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

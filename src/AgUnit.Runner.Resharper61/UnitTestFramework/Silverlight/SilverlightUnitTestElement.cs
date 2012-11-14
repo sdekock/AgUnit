@@ -96,7 +96,7 @@ namespace AgUnit.Runner.Resharper61.UnitTestFramework.Silverlight
             return null;
         }
 
-#if RS70
+#if RS70 || RS71
         public string GetPresentation(IUnitTestElement parent = null)
 #else
         public string GetPresentation()
@@ -125,7 +125,7 @@ namespace AgUnit.Runner.Resharper61.UnitTestFramework.Silverlight
             return new List<IProjectFile>();
         }
 
-#if RS70
+#if RS70 || RS71
         public IList<UnitTestTask> GetTaskSequence(ICollection<IUnitTestElement> explicitElements, IUnitTestLaunch launch)
 #else
         public IList<UnitTestTask> GetTaskSequence(IList<IUnitTestElement> explicitElements)
