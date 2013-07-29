@@ -46,11 +46,13 @@ namespace AgUnit.Runner.Resharper61.UnitTestFramework.SilverlightPlatform
 
         public static void RemoveAssemblyLoadTasks(this IList<UnitTestTask> sequence)
         {
+#if !RS80
             var assemblyLoadTasks = sequence.Where(t => t.RemoteTask is AssemblyLoadTask).ToArray();
             foreach (var assemblyLoadTask in assemblyLoadTasks)
             {
                 sequence.Remove(assemblyLoadTask);
             }
+#endif
         }
     }
 }

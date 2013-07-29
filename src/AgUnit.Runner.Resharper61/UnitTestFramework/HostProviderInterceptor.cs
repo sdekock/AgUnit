@@ -4,6 +4,9 @@ using System.Linq;
 using AgUnit.Runner.Resharper61.Util;
 using JetBrains.Application;
 using JetBrains.ReSharper.UnitTestExplorer;
+#if RS80
+using JetBrains.ReSharper.UnitTestExplorer.Manager;
+#endif
 using JetBrains.ReSharper.UnitTestFramework;
 
 namespace AgUnit.Runner.Resharper61.UnitTestFramework

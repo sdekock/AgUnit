@@ -6,6 +6,9 @@ using JetBrains.ProjectModel;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.TaskRunnerFramework;
 using JetBrains.ReSharper.UnitTestFramework;
+#if RS80
+using System.Reflection;
+#endif
 
 namespace AgUnit.Runner.Resharper61.UnitTestFramework.Silverlight
 {
@@ -45,10 +48,18 @@ namespace AgUnit.Runner.Resharper61.UnitTestFramework.Silverlight
             get { return null; }
         }
 
+#if RS80
+        public static RemoteTaskRunnerInfo GetTaskRunnerInfo()
+        {
+            var runnerType = Assembly.LoadFrom(GetRunnerCodeBase()).GetType(RunnerTypeName);
+            return new RemoteTaskRunnerInfo(RunnerId, runnerType);
+        }
+#else
         public RemoteTaskRunnerInfo GetTaskRunnerInfo()
         {
             return new RemoteTaskRunnerInfo(RunnerCodeBase, RunnerTypeName);
         }
+#endif
 
         public void ExploreExternal(UnitTestElementConsumer consumer)
         {

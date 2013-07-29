@@ -2,6 +2,9 @@
 using System.Linq;
 using JetBrains.ProjectModel;
 using JetBrains.ReSharper.UnitTestExplorer;
+#if RS80
+using JetBrains.ReSharper.UnitTestExplorer.Launch;
+#endif
 using JetBrains.ReSharper.UnitTestFramework;
 
 namespace AgUnit.Runner.Resharper61.UnitTestFramework.SilverlightPlatform
@@ -12,7 +15,11 @@ namespace AgUnit.Runner.Resharper61.UnitTestFramework.SilverlightPlatform
         {
             var runs = launch.GetRuns();
 
+#if RS80
+            foreach (var run in runs.Values.Select(r => r.Value).ToArray())
+#else
             foreach (var run in runs.Values.ToArray())
+#endif
             {
                 foreach (var sequence in run.GetSequences().ToArray())
                 {
@@ -39,7 +46,7 @@ namespace AgUnit.Runner.Resharper61.UnitTestFramework.SilverlightPlatform
 
         private static void CreateSilverlightSequence(IList<UnitTestTask> sequence, IUnitTestLaunch launch, UnitTestProviders providers, IProject silverlightProject)
         {
-            var silverlightRun = launch.GetOrCreateSilverlightRun(silverlightProject.PlatformID);
+            var silverlightRun = launch.GetOrCreateSilverlightRun(silverlightProject.PlatformID, providers);
 
             sequence.AddSilverlightUnitTestTask(silverlightProject, providers);
             sequence.RemoveAssemblyLoadTasks();
