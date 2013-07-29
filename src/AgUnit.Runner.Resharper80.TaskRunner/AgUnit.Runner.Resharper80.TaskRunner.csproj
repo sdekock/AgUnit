@@ -1,0 +1,184 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{46FB54A8-AA3A-4F4D-96ED-DB772E32CA60}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AgUnit.Runner.Resharper80.TaskRunner</RootNamespace>
+    <AssemblyName>AgUnit.Runner.Resharper80.TaskRunner</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ReferencePath>$(Registry:HKEY_LOCAL_MACHINE\SOFTWARE\JetBrains\ReSharper\v8.0\vs11.0@InstallDir)</ReferencePath>
+    <StartAction>Program</StartAction>
+    <StartProgram>$(DevEnvDir)devenv.exe</StartProgram>
+    <StartArguments>/ReSharper.Plugin AgUnit.Runner.Resharper80.dll /ReSharper.LogFile C:\resharper.log /ReSharper.LogLevel Verbose ..\src\DummyTests\VS2010\DummyTests.sln</StartArguments>
+    <OutputPath>..\..\output\</OutputPath>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineConstants>TRACE;DEBUG;RS80</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineConstants>TRACE;RS80</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Ionic.Zip.Reduced">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="JetBrains.Platform.ReSharper.Shell">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="JetBrains.Platform.ReSharper.Util">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="JetBrains.ReSharper.TaskRunnerFramework">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="JetBrains.ReSharper.UnitTestRunner.MSTest10">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="JetBrains.ReSharper.UnitTestRunner.MSTest11">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+      <Aliases>mstest11</Aliases>
+    </Reference>
+    <Reference Include="JetBrains.ReSharper.UnitTestRunner.NUnit">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\AgUnit.Runner.Resharper61\Properties\ProjectInfo.cs">
+      <Link>Properties\ProjectInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\AgUnit.Runner.Resharper71.TaskRunner\UnitTestProvider\MSTest11\MsTest11AssemblyTaskProvider.cs">
+      <Link>UnitTestProvider\MSTest11\MsTest11AssemblyTaskProvider.cs</Link>
+    </Compile>
+    <Compile Include="..\AgUnit.Runner.Resharper71.TaskRunner\UnitTestProvider\MSTest11\MsTest11ClassTaskProvider.cs">
+      <Link>UnitTestProvider\MSTest11\MsTest11ClassTaskProvider.cs</Link>
+    </Compile>
+    <Compile Include="..\AgUnit.Runner.Resharper71.TaskRunner\UnitTestProvider\MSTest11\MsTest11MethodTaskProvider.cs">
+      <Link>UnitTestProvider\MSTest11\MsTest11MethodTaskProvider.cs</Link>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="..\AgUnit.Runner.Resharper61.TaskRunner\UnitTestProvider\MSTest\MsTestAssemblyTaskProvider.cs">
+      <Link>UnitTestProvider\MSTest\MsTestAssemblyTaskProvider.cs</Link>
+    </Compile>
+    <Compile Include="..\AgUnit.Runner.Resharper61.TaskRunner\UnitTestProvider\MSTest\MsTestClassTaskProvider.cs">
+      <Link>UnitTestProvider\MSTest\MsTestClassTaskProvider.cs</Link>
+    </Compile>
+    <Compile Include="..\AgUnit.Runner.Resharper61.TaskRunner\UnitTestProvider\MSTest\MsTestMethodTaskProvider.cs">
+      <Link>UnitTestProvider\MSTest\MsTestMethodTaskProvider.cs</Link>
+    </Compile>
+    <Compile Include="..\AgUnit.Runner.Resharper61.TaskRunner\UnitTestProvider\nUnit\NUnitAssemblyTaskProvider.cs">
+      <Link>UnitTestProvider\nUnit\NUnitAssemblyTaskProvider.cs</Link>
+    </Compile>
+    <Compile Include="..\AgUnit.Runner.Resharper61.TaskRunner\UnitTestProvider\nUnit\NUnitClassTaskProvider.cs">
+      <Link>UnitTestProvider\nUnit\NUnitClassTaskProvider.cs</Link>
+    </Compile>
+    <Compile Include="..\AgUnit.Runner.Resharper61.TaskRunner\UnitTestProvider\nUnit\NUnitMethodTaskProvider.cs">
+      <Link>UnitTestProvider\nUnit\NUnitMethodTaskProvider.cs</Link>
+    </Compile>
+    <Compile Include="..\AgUnit.Runner.Resharper61.TaskRunner\UnitTestProvider\UnitTestTaskProviderFactory.cs">
+      <Link>UnitTestProvider\UnitTestTaskProviderFactory.cs</Link>
+    </Compile>
+    <Compile Include="..\AgUnit.Runner.Resharper61.TaskRunner\UnitTestProvider\XUnit\XUnitAssemblyTaskProvider.cs">
+      <Link>UnitTestProvider\XUnit\XUnitAssemblyTaskProvider.cs</Link>
+    </Compile>
+    <Compile Include="..\AgUnit.Runner.Resharper61.TaskRunner\UnitTestProvider\XUnit\XUnitClassTaskProvider.cs">
+      <Link>UnitTestProvider\XUnit\XUnitClassTaskProvider.cs</Link>
+    </Compile>
+    <Compile Include="..\AgUnit.Runner.Resharper61.TaskRunner\UnitTestProvider\XUnit\XUnitMethodTaskProvider.cs">
+      <Link>UnitTestProvider\XUnit\XUnitMethodTaskProvider.cs</Link>
+    </Compile>
+    <Compile Include="..\AgUnit.Runner.Resharper61.TaskRunner\UnitTestRunner\Silverlight\DebugLogger.cs">
+      <Link>UnitTestRunner\Silverlight\DebugLogger.cs</Link>
+    </Compile>
+    <Compile Include="..\AgUnit.Runner.Resharper61.TaskRunner\UnitTestRunner\Silverlight\Execution\AssemblyTask.cs">
+      <Link>UnitTestRunner\Silverlight\Execution\AssemblyTask.cs</Link>
+    </Compile>
+    <Compile Include="..\AgUnit.Runner.Resharper61.TaskRunner\UnitTestRunner\Silverlight\Execution\ClassTask.cs">
+      <Link>UnitTestRunner\Silverlight\Execution\ClassTask.cs</Link>
+    </Compile>
+    <Compile Include="..\AgUnit.Runner.Resharper61.TaskRunner\UnitTestRunner\Silverlight\Execution\MethodTask.cs">
+      <Link>UnitTestRunner\Silverlight\Execution\MethodTask.cs</Link>
+    </Compile>
+    <Compile Include="..\AgUnit.Runner.Resharper61.TaskRunner\UnitTestRunner\Silverlight\Execution\SilverlightTask.cs">
+      <Link>UnitTestRunner\Silverlight\Execution\SilverlightTask.cs</Link>
+    </Compile>
+    <Compile Include="..\AgUnit.Runner.Resharper61.TaskRunner\UnitTestRunner\Silverlight\Execution\TaskEnvironment.cs">
+      <Link>UnitTestRunner\Silverlight\Execution\TaskEnvironment.cs</Link>
+    </Compile>
+    <Compile Include="..\AgUnit.Runner.Resharper61.TaskRunner\UnitTestRunner\Silverlight\Execution\TaskNode.cs">
+      <Link>UnitTestRunner\Silverlight\Execution\TaskNode.cs</Link>
+    </Compile>
+    <Compile Include="..\AgUnit.Runner.Resharper61.TaskRunner\UnitTestRunner\Silverlight\Providers\IAssemblyTaskProvider.cs">
+      <Link>UnitTestRunner\Silverlight\Providers\IAssemblyTaskProvider.cs</Link>
+    </Compile>
+    <Compile Include="..\AgUnit.Runner.Resharper61.TaskRunner\UnitTestRunner\Silverlight\Providers\IClassTaskProvider.cs">
+      <Link>UnitTestRunner\Silverlight\Providers\IClassTaskProvider.cs</Link>
+    </Compile>
+    <Compile Include="..\AgUnit.Runner.Resharper61.TaskRunner\UnitTestRunner\Silverlight\Providers\IMethodTaskProvider.cs">
+      <Link>UnitTestRunner\Silverlight\Providers\IMethodTaskProvider.cs</Link>
+    </Compile>
+    <Compile Include="..\AgUnit.Runner.Resharper61.TaskRunner\UnitTestRunner\Silverlight\Providers\TaskNodeExtensions.cs">
+      <Link>UnitTestRunner\Silverlight\Providers\TaskNodeExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\AgUnit.Runner.Resharper61.TaskRunner\UnitTestRunner\Silverlight\SilverlightResultsHandler.cs">
+      <Link>UnitTestRunner\Silverlight\SilverlightResultsHandler.cs</Link>
+    </Compile>
+    <Compile Include="..\AgUnit.Runner.Resharper61.TaskRunner\UnitTestRunner\Silverlight\SilverlightUnitTestTaskRunner.cs">
+      <Link>UnitTestRunner\Silverlight\SilverlightUnitTestTaskRunner.cs</Link>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\lib\sl\StatLight\src\StatLight.Core\StatLight.Core.csproj">
+      <Project>{AA6F387F-BB41-4FA8-B38A-7037A7C59716}</Project>
+      <Name>StatLight.Core</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\AgUnit.Runner.Resharper80\AgUnit.Runner.Resharper80.csproj">
+      <Project>{3b3e3193-5839-454a-8853-b7223606ef55}</Project>
+      <Name>AgUnit.Runner.Resharper80</Name>
+      <Private>False</Private>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>echo .Integration-SL3.xap &gt; excludes.txt
+echo .Integration-SL4.xap &gt;&gt; excludes.txt
+xcopy /Y ..\lib\sl\Statlight\src\build\bin\$(ConfigurationName)\*.xap . /exclude:excludes.txt
+del excludes.txt</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

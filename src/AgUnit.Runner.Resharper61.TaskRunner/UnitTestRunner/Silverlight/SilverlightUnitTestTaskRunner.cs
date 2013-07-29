@@ -22,6 +22,7 @@ namespace AgUnit.Runner.Resharper61.TaskRunner.UnitTestRunner.Silverlight
             : base(server)
         { }
 
+#if !RS80
         public override TaskResult Start(TaskExecutionNode node)
         {
             return TaskResult.Success;
@@ -36,6 +37,7 @@ namespace AgUnit.Runner.Resharper61.TaskRunner.UnitTestRunner.Silverlight
         {
             return TaskResult.Success;
         }
+#endif
 
         public override void ExecuteRecursive(TaskExecutionNode node)
         {

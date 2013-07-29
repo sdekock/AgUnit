@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Xml;
 using JetBrains.ProjectModel;
 using JetBrains.ReSharper.Psi;
+using JetBrains.ReSharper.TaskRunnerFramework;
 using JetBrains.ReSharper.UnitTestFramework;
+using JetBrains.ReSharper.UnitTestFramework.Strategy;
 
 namespace AgUnit.Runner.Resharper61.UnitTestFramework.Silverlight
 {
@@ -96,7 +98,7 @@ namespace AgUnit.Runner.Resharper61.UnitTestFramework.Silverlight
             return null;
         }
 
-#if RS70 || RS71
+#if RS70 || RS71 || RS80
         public string GetPresentation(IUnitTestElement parent = null)
 #else
         public string GetPresentation()
@@ -125,7 +127,14 @@ namespace AgUnit.Runner.Resharper61.UnitTestFramework.Silverlight
             return new List<IProjectFile>();
         }
 
-#if RS70 || RS71
+#if RS80
+        public IUnitTestRunStrategy GetRunStrategy(IHostProvider hostProvider)
+        {
+            return new OutOfProcessUnitTestRunStrategy(SilverlightUnitTestProvider.GetTaskRunnerInfo());
+        }
+#endif
+
+#if RS70 || RS71 || RS80
         public IList<UnitTestTask> GetTaskSequence(ICollection<IUnitTestElement> explicitElements, IUnitTestLaunch launch)
 #else
         public IList<UnitTestTask> GetTaskSequence(IList<IUnitTestElement> explicitElements)
