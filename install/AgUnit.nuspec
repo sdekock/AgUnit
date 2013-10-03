@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>AgUnit</id>
+    <title></title>
+    <version>0.7.0</version>
+    <authors>Steven de Kock</authors>
+    <owners>Steven de Kock</owners>
+    <description>Run Silverlight unit tests, using StatLight</description>
+    <projectUrl>https://agunit.codeplex.com</projectUrl>
+    <licenseUrl>https://agunit.codeplex.com/license</licenseUrl>
+    <copyright>Copyright 2013 Steven de Kock</copyright>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <dependencies>
+      <dependency id="ReSharper" version="8.0" />
+    </dependencies>
+    <tags>resharper unittest silverlight statlight</tags>
+  </metadata>
+  <files>
+    <file src="..\output\AgUnit.Runner.ReSharper80.dll"
+          target="ReSharper\v8.0\plugins" />
+    <file src="..\output\AgUnit.Runner.ReSharper80.TaskRunner.dll"
+          target="ReSharper\v8.0\plugins" />
+    <file src="..\output\StatLight.Core.dll" target="ReSharper\v8.0\plugins" />
+    <file src="..\output\*.xap" target="ReSharper\v8.0\plugins" />
+  </files>
+</package>
