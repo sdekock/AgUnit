@@ -9,7 +9,7 @@ using JetBrains.Application.PluginSupport;
 [assembly: AssemblyDescription("AgUnit - http://agunit.codeplex.com")]
 [assembly: AssemblyCompany("AgUnit - http://agunit.codeplex.com")]
 [assembly: AssemblyProduct("AgUnit - http://agunit.codeplex.com")]
-[assembly: AssemblyCopyright("Copyright © AgUnit authors - http://agunit.codeplex.com 2012")]
+[assembly: AssemblyCopyright("Copyright © AgUnit authors - http://agunit.codeplex.com 2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -28,6 +28,6 @@ using JetBrains.Application.PluginSupport;
 
 // Plugin info for ReSharper
 
-[assembly: PluginTitle("AgUnit 0.7 for R# 7.1")]
-[assembly: PluginDescription("AgUnit 0.7 for R# 7.1 - http://agunit.codeplex.com")]
+[assembly: PluginTitle("AgUnit")]
+[assembly: PluginDescription("Unit test runner for SilverLight - http://agunit.codeplex.com")]
 [assembly: PluginVendor("AgUnit authors - http://agunit.codeplex.com")]

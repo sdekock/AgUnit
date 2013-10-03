@@ -5,8 +5,8 @@ using AgUnit.Runner.Resharper61.Util;
 using JetBrains.ProjectModel;
 using JetBrains.ReSharper.TaskRunnerFramework;
 using JetBrains.ReSharper.UnitTestExplorer;
-using JetBrains.ReSharper.UnitTestFramework.Strategy;
 #if RS80
+using JetBrains.ReSharper.UnitTestFramework.Strategy;
 using JetBrains.ReSharper.UnitTestExplorer.Launch;
 #endif
 using JetBrains.ReSharper.UnitTestFramework;

@@ -5,7 +5,9 @@ using JetBrains.ProjectModel;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.TaskRunnerFramework;
 using JetBrains.ReSharper.UnitTestFramework;
+#if RS80
 using JetBrains.ReSharper.UnitTestFramework.Strategy;
+#endif
 
 namespace AgUnit.Runner.Resharper61.UnitTestFramework.Silverlight
 {
