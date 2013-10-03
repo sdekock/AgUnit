@@ -5,8 +5,8 @@ using AgUnit.Runner.Resharper61.UnitTestFramework.SilverlightPlatform;
 using AgUnit.Runner.Resharper61.Util;
 using EnvDTE;
 using JetBrains.ReSharper.UnitTestExplorer;
-using JetBrains.ReSharper.UnitTestFramework.Strategy;
 #if RS80
+using JetBrains.ReSharper.UnitTestFramework.Strategy;
 using JetBrains.ReSharper.UnitTestExplorer.Manager;
 using util::JetBrains.Util.Logging;
 using util::JetBrains.Threading;
