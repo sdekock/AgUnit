@@ -150,58 +150,24 @@
     <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\AgUnit.Runner.Resharper61\Properties\ProjectInfo.cs">
-      <Link>Properties\ProjectInfo.cs</Link>
-    </Compile>
+    <Compile Include="Properties\ProjectInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="..\AgUnit.Runner.Resharper61\UnitTestFramework\ExtendedDebugHostProvider.cs">
-      <Link>UnitTestFramework\ExtendedDebugHostProvider.cs</Link>
-    </Compile>
-    <Compile Include="..\AgUnit.Runner.Resharper61\UnitTestFramework\ExtendedDebugTaskRunnerHostController.cs">
-      <Link>UnitTestFramework\ExtendedDebugTaskRunnerHostController.cs</Link>
-    </Compile>
-    <Compile Include="..\AgUnit.Runner.Resharper61\UnitTestFramework\HostProviderInterceptor.cs">
-      <Link>UnitTestFramework\HostProviderInterceptor.cs</Link>
-    </Compile>
-    <Compile Include="..\AgUnit.Runner.Resharper61\UnitTestFramework\HostProviderWrapper.cs">
-      <Link>UnitTestFramework\HostProviderWrapper.cs</Link>
-    </Compile>
-    <Compile Include="..\AgUnit.Runner.Resharper61\UnitTestFramework\SilverlightPlatform\ProjectExtensions.cs">
-      <Link>UnitTestFramework\SilverlightPlatform\ProjectExtensions.cs</Link>
-    </Compile>
-    <Compile Include="..\AgUnit.Runner.Resharper61\UnitTestFramework\SilverlightPlatform\SilverlightPlatformSupportExtensions.cs">
-      <Link>UnitTestFramework\SilverlightPlatform\SilverlightPlatformSupportExtensions.cs</Link>
-    </Compile>
-    <Compile Include="..\AgUnit.Runner.Resharper61\UnitTestFramework\SilverlightPlatform\UnitTestLaunchExtensions.cs">
-      <Link>UnitTestFramework\SilverlightPlatform\UnitTestLaunchExtensions.cs</Link>
-    </Compile>
-    <Compile Include="..\AgUnit.Runner.Resharper61\UnitTestFramework\SilverlightPlatform\UnitTestRunExtensions.cs">
-      <Link>UnitTestFramework\SilverlightPlatform\UnitTestRunExtensions.cs</Link>
-    </Compile>
-    <Compile Include="..\AgUnit.Runner.Resharper61\UnitTestFramework\SilverlightPlatform\UnitTestSequenceExtensions.cs">
-      <Link>UnitTestFramework\SilverlightPlatform\UnitTestSequenceExtensions.cs</Link>
-    </Compile>
-    <Compile Include="..\AgUnit.Runner.Resharper61\UnitTestFramework\Silverlight\SilverlightUnitTestElement.cs">
-      <Link>UnitTestFramework\Silverlight\SilverlightUnitTestElement.cs</Link>
-    </Compile>
-    <Compile Include="..\AgUnit.Runner.Resharper61\UnitTestFramework\Silverlight\SilverlightUnitTestProvider.cs">
-      <Link>UnitTestFramework\Silverlight\SilverlightUnitTestProvider.cs</Link>
-    </Compile>
-    <Compile Include="..\AgUnit.Runner.Resharper61\UnitTestFramework\Silverlight\SilverlightUnitTestTask.cs">
-      <Link>UnitTestFramework\Silverlight\SilverlightUnitTestTask.cs</Link>
-    </Compile>
-    <Compile Include="..\AgUnit.Runner.Resharper61\UnitTestProvider\MSTest\SilverlightMsTestMetadataExplorer.cs">
-      <Link>UnitTestProvider\MSTest\SilverlightMsTestMetadataExplorer.cs</Link>
-    </Compile>
-    <Compile Include="..\AgUnit.Runner.Resharper61\UnitTestProvider\XUnit\SilverlightXunitTestFileExplorer.cs">
-      <Link>UnitTestProvider\XUnit\SilverlightXunitTestFileExplorer.cs</Link>
-    </Compile>
-    <Compile Include="..\AgUnit.Runner.Resharper61\Util\ReflectionExtensions.cs">
-      <Link>Util\ReflectionExtensions.cs</Link>
-    </Compile>
-    <Compile Include="..\AgUnit.Runner.Resharper61\Util\Tuple.cs">
-      <Link>Util\Tuple.cs</Link>
-    </Compile>
+    <Compile Include="UnitTestFramework\ExtendedDebugHostProvider.cs" />
+    <Compile Include="UnitTestFramework\ExtendedDebugTaskRunnerHostController.cs" />
+    <Compile Include="UnitTestFramework\HostProviderInterceptor.cs" />
+    <Compile Include="UnitTestFramework\HostProviderWrapper.cs" />
+    <Compile Include="UnitTestFramework\SilverlightPlatform\ProjectExtensions.cs" />
+    <Compile Include="UnitTestFramework\SilverlightPlatform\SilverlightPlatformSupportExtensions.cs" />
+    <Compile Include="UnitTestFramework\SilverlightPlatform\UnitTestLaunchExtensions.cs" />
+    <Compile Include="UnitTestFramework\SilverlightPlatform\UnitTestRunExtensions.cs" />
+    <Compile Include="UnitTestFramework\SilverlightPlatform\UnitTestSequenceExtensions.cs" />
+    <Compile Include="UnitTestFramework\Silverlight\SilverlightUnitTestElement.cs" />
+    <Compile Include="UnitTestFramework\Silverlight\SilverlightUnitTestProvider.cs" />
+    <Compile Include="UnitTestFramework\Silverlight\SilverlightUnitTestTask.cs" />
+    <Compile Include="UnitTestProvider\MSTest\SilverlightMsTestMetadataExplorer.cs" />
+    <Compile Include="UnitTestProvider\XUnit\SilverlightXunitTestFileExplorer.cs" />
+    <Compile Include="Util\ReflectionExtensions.cs" />
+    <Compile Include="Util\Tuple.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

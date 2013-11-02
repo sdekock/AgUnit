@@ -71,88 +71,36 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\AgUnit.Runner.Resharper61\Properties\ProjectInfo.cs">
+    <Compile Include="..\AgUnit.Runner.Resharper80\Properties\ProjectInfo.cs">
       <Link>Properties\ProjectInfo.cs</Link>
     </Compile>
-    <Compile Include="..\AgUnit.Runner.Resharper71.TaskRunner\UnitTestProvider\MSTest11\MsTest11AssemblyTaskProvider.cs">
-      <Link>UnitTestProvider\MSTest11\MsTest11AssemblyTaskProvider.cs</Link>
-    </Compile>
-    <Compile Include="..\AgUnit.Runner.Resharper71.TaskRunner\UnitTestProvider\MSTest11\MsTest11ClassTaskProvider.cs">
-      <Link>UnitTestProvider\MSTest11\MsTest11ClassTaskProvider.cs</Link>
-    </Compile>
-    <Compile Include="..\AgUnit.Runner.Resharper71.TaskRunner\UnitTestProvider\MSTest11\MsTest11MethodTaskProvider.cs">
-      <Link>UnitTestProvider\MSTest11\MsTest11MethodTaskProvider.cs</Link>
-    </Compile>
+    <Compile Include="UnitTestProvider\MSTest11\MsTest11AssemblyTaskProvider.cs" />
+    <Compile Include="UnitTestProvider\MSTest11\MsTest11ClassTaskProvider.cs" />
+    <Compile Include="UnitTestProvider\MSTest11\MsTest11MethodTaskProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="..\AgUnit.Runner.Resharper61.TaskRunner\UnitTestProvider\MSTest\MsTestAssemblyTaskProvider.cs">
-      <Link>UnitTestProvider\MSTest\MsTestAssemblyTaskProvider.cs</Link>
-    </Compile>
-    <Compile Include="..\AgUnit.Runner.Resharper61.TaskRunner\UnitTestProvider\MSTest\MsTestClassTaskProvider.cs">
-      <Link>UnitTestProvider\MSTest\MsTestClassTaskProvider.cs</Link>
-    </Compile>
-    <Compile Include="..\AgUnit.Runner.Resharper61.TaskRunner\UnitTestProvider\MSTest\MsTestMethodTaskProvider.cs">
-      <Link>UnitTestProvider\MSTest\MsTestMethodTaskProvider.cs</Link>
-    </Compile>
-    <Compile Include="..\AgUnit.Runner.Resharper61.TaskRunner\UnitTestProvider\nUnit\NUnitAssemblyTaskProvider.cs">
-      <Link>UnitTestProvider\nUnit\NUnitAssemblyTaskProvider.cs</Link>
-    </Compile>
-    <Compile Include="..\AgUnit.Runner.Resharper61.TaskRunner\UnitTestProvider\nUnit\NUnitClassTaskProvider.cs">
-      <Link>UnitTestProvider\nUnit\NUnitClassTaskProvider.cs</Link>
-    </Compile>
-    <Compile Include="..\AgUnit.Runner.Resharper61.TaskRunner\UnitTestProvider\nUnit\NUnitMethodTaskProvider.cs">
-      <Link>UnitTestProvider\nUnit\NUnitMethodTaskProvider.cs</Link>
-    </Compile>
-    <Compile Include="..\AgUnit.Runner.Resharper61.TaskRunner\UnitTestProvider\UnitTestTaskProviderFactory.cs">
-      <Link>UnitTestProvider\UnitTestTaskProviderFactory.cs</Link>
-    </Compile>
-    <Compile Include="..\AgUnit.Runner.Resharper61.TaskRunner\UnitTestProvider\XUnit\XUnitAssemblyTaskProvider.cs">
-      <Link>UnitTestProvider\XUnit\XUnitAssemblyTaskProvider.cs</Link>
-    </Compile>
-    <Compile Include="..\AgUnit.Runner.Resharper61.TaskRunner\UnitTestProvider\XUnit\XUnitClassTaskProvider.cs">
-      <Link>UnitTestProvider\XUnit\XUnitClassTaskProvider.cs</Link>
-    </Compile>
-    <Compile Include="..\AgUnit.Runner.Resharper61.TaskRunner\UnitTestProvider\XUnit\XUnitMethodTaskProvider.cs">
-      <Link>UnitTestProvider\XUnit\XUnitMethodTaskProvider.cs</Link>
-    </Compile>
-    <Compile Include="..\AgUnit.Runner.Resharper61.TaskRunner\UnitTestRunner\Silverlight\DebugLogger.cs">
-      <Link>UnitTestRunner\Silverlight\DebugLogger.cs</Link>
-    </Compile>
-    <Compile Include="..\AgUnit.Runner.Resharper61.TaskRunner\UnitTestRunner\Silverlight\Execution\AssemblyTask.cs">
-      <Link>UnitTestRunner\Silverlight\Execution\AssemblyTask.cs</Link>
-    </Compile>
-    <Compile Include="..\AgUnit.Runner.Resharper61.TaskRunner\UnitTestRunner\Silverlight\Execution\ClassTask.cs">
-      <Link>UnitTestRunner\Silverlight\Execution\ClassTask.cs</Link>
-    </Compile>
-    <Compile Include="..\AgUnit.Runner.Resharper61.TaskRunner\UnitTestRunner\Silverlight\Execution\MethodTask.cs">
-      <Link>UnitTestRunner\Silverlight\Execution\MethodTask.cs</Link>
-    </Compile>
-    <Compile Include="..\AgUnit.Runner.Resharper61.TaskRunner\UnitTestRunner\Silverlight\Execution\SilverlightTask.cs">
-      <Link>UnitTestRunner\Silverlight\Execution\SilverlightTask.cs</Link>
-    </Compile>
-    <Compile Include="..\AgUnit.Runner.Resharper61.TaskRunner\UnitTestRunner\Silverlight\Execution\TaskEnvironment.cs">
-      <Link>UnitTestRunner\Silverlight\Execution\TaskEnvironment.cs</Link>
-    </Compile>
-    <Compile Include="..\AgUnit.Runner.Resharper61.TaskRunner\UnitTestRunner\Silverlight\Execution\TaskNode.cs">
-      <Link>UnitTestRunner\Silverlight\Execution\TaskNode.cs</Link>
-    </Compile>
-    <Compile Include="..\AgUnit.Runner.Resharper61.TaskRunner\UnitTestRunner\Silverlight\Providers\IAssemblyTaskProvider.cs">
-      <Link>UnitTestRunner\Silverlight\Providers\IAssemblyTaskProvider.cs</Link>
-    </Compile>
-    <Compile Include="..\AgUnit.Runner.Resharper61.TaskRunner\UnitTestRunner\Silverlight\Providers\IClassTaskProvider.cs">
-      <Link>UnitTestRunner\Silverlight\Providers\IClassTaskProvider.cs</Link>
-    </Compile>
-    <Compile Include="..\AgUnit.Runner.Resharper61.TaskRunner\UnitTestRunner\Silverlight\Providers\IMethodTaskProvider.cs">
-      <Link>UnitTestRunner\Silverlight\Providers\IMethodTaskProvider.cs</Link>
-    </Compile>
-    <Compile Include="..\AgUnit.Runner.Resharper61.TaskRunner\UnitTestRunner\Silverlight\Providers\TaskNodeExtensions.cs">
-      <Link>UnitTestRunner\Silverlight\Providers\TaskNodeExtensions.cs</Link>
-    </Compile>
-    <Compile Include="..\AgUnit.Runner.Resharper61.TaskRunner\UnitTestRunner\Silverlight\SilverlightResultsHandler.cs">
-      <Link>UnitTestRunner\Silverlight\SilverlightResultsHandler.cs</Link>
-    </Compile>
-    <Compile Include="..\AgUnit.Runner.Resharper61.TaskRunner\UnitTestRunner\Silverlight\SilverlightUnitTestTaskRunner.cs">
-      <Link>UnitTestRunner\Silverlight\SilverlightUnitTestTaskRunner.cs</Link>
-    </Compile>
+    <Compile Include="UnitTestProvider\MSTest\MsTestAssemblyTaskProvider.cs" />
+    <Compile Include="UnitTestProvider\MSTest\MsTestClassTaskProvider.cs" />
+    <Compile Include="UnitTestProvider\MSTest\MsTestMethodTaskProvider.cs" />
+    <Compile Include="UnitTestProvider\nUnit\NUnitAssemblyTaskProvider.cs" />
+    <Compile Include="UnitTestProvider\nUnit\NUnitClassTaskProvider.cs" />
+    <Compile Include="UnitTestProvider\nUnit\NUnitMethodTaskProvider.cs" />
+    <Compile Include="UnitTestProvider\UnitTestTaskProviderFactory.cs" />
+    <Compile Include="UnitTestProvider\XUnit\XUnitAssemblyTaskProvider.cs" />
+    <Compile Include="UnitTestProvider\XUnit\XUnitClassTaskProvider.cs" />
+    <Compile Include="UnitTestProvider\XUnit\XUnitMethodTaskProvider.cs" />
+    <Compile Include="UnitTestRunner\Silverlight\DebugLogger.cs" />
+    <Compile Include="UnitTestRunner\Silverlight\Execution\AssemblyTask.cs" />
+    <Compile Include="UnitTestRunner\Silverlight\Execution\ClassTask.cs" />
+    <Compile Include="UnitTestRunner\Silverlight\Execution\MethodTask.cs" />
+    <Compile Include="UnitTestRunner\Silverlight\Execution\SilverlightTask.cs" />
+    <Compile Include="UnitTestRunner\Silverlight\Execution\TaskEnvironment.cs" />
+    <Compile Include="UnitTestRunner\Silverlight\Execution\TaskNode.cs" />
+    <Compile Include="UnitTestRunner\Silverlight\Providers\IAssemblyTaskProvider.cs" />
+    <Compile Include="UnitTestRunner\Silverlight\Providers\IClassTaskProvider.cs" />
+    <Compile Include="UnitTestRunner\Silverlight\Providers\IMethodTaskProvider.cs" />
+    <Compile Include="UnitTestRunner\Silverlight\Providers\TaskNodeExtensions.cs" />
+    <Compile Include="UnitTestRunner\Silverlight\SilverlightResultsHandler.cs" />
+    <Compile Include="UnitTestRunner\Silverlight\SilverlightUnitTestTaskRunner.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\lib\sl\StatLight\src\StatLight.Core\StatLight.Core.csproj">
