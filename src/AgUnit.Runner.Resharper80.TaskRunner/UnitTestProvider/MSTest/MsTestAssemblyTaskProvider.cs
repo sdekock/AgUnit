@@ -1,6 +1,6 @@
 ﻿using AgUnit.Runner.Resharper80.TaskRunner.UnitTestRunner.Silverlight.Providers;
+using AgUnit.Runner.Resharper80.Util;
 using JetBrains.ReSharper.TaskRunnerFramework;
-using JetBrains.ReSharper.UnitTestRunner.MSTest;
 
 namespace AgUnit.Runner.Resharper80.TaskRunner.UnitTestProvider.MSTest
 {
@@ -8,19 +8,12 @@ namespace AgUnit.Runner.Resharper80.TaskRunner.UnitTestProvider.MSTest
     {
         public bool IsAssemblyTask(RemoteTask task)
         {
-            return task is MsTestTestAssemblyTask;
-        }
-
-        private MsTestTestAssemblyTask GetTask(RemoteTask task)
-        {
-            return (MsTestTestAssemblyTask)task;
+            return task.GetType().Name == "MsTestTestAssemblyTask";
         }
 
         public string GetAssemblyLocation(RemoteTask task)
         {
-            var assemblyTask = GetTask(task);
-
-            return assemblyTask.AssemblyLocation;
+            return task.GetProperty<string>("AssemblyLocation");
         }
     }
 }

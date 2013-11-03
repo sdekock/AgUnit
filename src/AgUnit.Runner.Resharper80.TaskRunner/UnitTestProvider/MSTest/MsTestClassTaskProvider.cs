@@ -1,6 +1,6 @@
 using AgUnit.Runner.Resharper80.TaskRunner.UnitTestRunner.Silverlight.Providers;
+using AgUnit.Runner.Resharper80.Util;
 using JetBrains.ReSharper.TaskRunnerFramework;
-using JetBrains.ReSharper.UnitTestRunner.MSTest;
 
 namespace AgUnit.Runner.Resharper80.TaskRunner.UnitTestProvider.MSTest
 {
@@ -8,19 +8,12 @@ namespace AgUnit.Runner.Resharper80.TaskRunner.UnitTestProvider.MSTest
     {
         public bool IsClassTask(RemoteTask task)
         {
-            return task is MsTestTestClassTask;
-        }
-
-        private MsTestTestClassTask GetTask(RemoteTask task)
-        {
-            return (MsTestTestClassTask)task;
+            return task.GetType().Name == "MsTestTestClassTask";
         }
 
         public string GetFullClassName(RemoteTask task)
         {
-            var classTask = GetTask(task);
-
-            return classTask.TypeName;
+            return task.GetProperty<string>("TypeName");
         }
     }
 }
