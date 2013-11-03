@@ -3,10 +3,34 @@
   <metadata>
     <id>AgUnit</id>
     <title></title>
-    <version>0.7.0</version>
+    <version>0.8.0</version>
     <authors>Steven de Kock</authors>
     <owners>Steven de Kock</owners>
-    <description>Run Silverlight unit tests, using StatLight</description>
+	<summary>Run Silverlight unit tests, using StatLight.</summary>
+    <description>
+		Run Silverlight unit tests, using StatLight.
+		
+		Supports:
+			- ReSharper 8.0.2
+			- Visual Studio 2010, 2012 and 2013
+			- Silverlight 3, 4 and 5 (Silverlight 5 developer runtime is required for all versions)
+			- Test frameworks:
+				* MSTest:
+					You will need the MSTest files included with the Silverlight toolkit.
+					See http://silverlight.codeplex.com/.
+				* NUnit support
+					NUnit tests can be run by using the nunit-silverlight project from your Silverlight test project.
+					See http://code.google.com/p/nunit-silverlight/.
+				* xUnit support
+					xUnit tests can be run by using the xunitcontrib-silverlight project from your Silverlight test project.
+					You will also need to install the xUnit plugin (available on the ReSharper Extension Gallery).
+					See http://xunitcontrib.codeplex.com/.
+				
+		Thanks:
+			- Jason Jarrett (staxmanade) for StatLight: https://github.com/staxmanade/statlight
+			- Matt Ellis: https://twitter.com/citizenmatt
+			- My colleagues: http://www.itemsolutions.com/
+	</description>
     <projectUrl>https://agunit.codeplex.com</projectUrl>
     <licenseUrl>https://agunit.codeplex.com/license</licenseUrl>
     <copyright>Copyright 2013 Steven de Kock</copyright>
