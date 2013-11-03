@@ -1,13 +1,11 @@
 ﻿using System.Collections.Generic;
-using AgUnit.Runner.Resharper61.TaskRunner.UnitTestProvider.MSTest;
-#if RS70 || RS71 || RS80
-using AgUnit.Runner.Resharper70.TaskRunner.UnitTestProvider.MSTest11;
-#endif
-using AgUnit.Runner.Resharper61.TaskRunner.UnitTestProvider.XUnit;
-using AgUnit.Runner.Resharper61.TaskRunner.UnitTestProvider.nUnit;
-using AgUnit.Runner.Resharper61.TaskRunner.UnitTestRunner.Silverlight.Providers;
+using AgUnit.Runner.Resharper80.TaskRunner.UnitTestProvider.MSTest;
+using AgUnit.Runner.Resharper80.TaskRunner.UnitTestProvider.MSTest11;
+using AgUnit.Runner.Resharper80.TaskRunner.UnitTestProvider.nUnit;
+using AgUnit.Runner.Resharper80.TaskRunner.UnitTestProvider.XUnit;
+using AgUnit.Runner.Resharper80.TaskRunner.UnitTestRunner.Silverlight.Providers;
 
-namespace AgUnit.Runner.Resharper61.TaskRunner.UnitTestProvider
+namespace AgUnit.Runner.Resharper80.TaskRunner.UnitTestProvider
 {
     public static class UnitTestTaskProviderFactory
     {
@@ -16,11 +14,9 @@ namespace AgUnit.Runner.Resharper61.TaskRunner.UnitTestProvider
             return new IAssemblyTaskProvider[]
             {
                 new MsTestAssemblyTaskProvider(),
+                new MsTest11AssemblyTaskProvider(),
                 new NUnitAssemblyTaskProvider(),
                 new XUnitAssemblyTaskProvider()
-#if RS70 || RS71 || RS80
-                , new MsTest11AssemblyTaskProvider()
-#endif
             };
         }
 
@@ -29,11 +25,9 @@ namespace AgUnit.Runner.Resharper61.TaskRunner.UnitTestProvider
             return new IClassTaskProvider[]
             {
                 new MsTestClassTaskProvider(),
+                new MsTest11ClassTaskProvider(),
                 new NUnitClassTaskProvider(),
                 new XUnitClassTaskProvider()
-#if RS70 || RS71 || RS80
-                , new MsTest11ClassTaskProvider()
-#endif
             };
         }
 
@@ -42,11 +36,9 @@ namespace AgUnit.Runner.Resharper61.TaskRunner.UnitTestProvider
             return new IMethodTaskProvider[]
             {
                 new MsTestMethodTaskProvider(),
+                new MsTest11MethodTaskProvider(),
                 new NUnitMethodTaskProvider(),
                 new XUnitMethodTaskProvider()
-#if RS70 || RS71 || RS80
-                , new MsTest11MethodTaskProvider()
-#endif
             };
         }
     }

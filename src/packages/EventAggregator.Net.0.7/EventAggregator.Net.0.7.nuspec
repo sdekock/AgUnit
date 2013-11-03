@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>EventAggregator.Net</id>
+    <version>0.7</version>
+    <title />
+    <authors>Jason Jarrett</authors>
+    <owners>Jason Jarrett</owners>
+    <projectUrl>https://github.com/staxmanade/EventAggregator.Net</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A .Net class and some interfaces to provide a lightweight, convenient, and decoupled Pub/Sub event aggregator.</description>
+  </metadata>
+</package>

@@ -106,7 +106,7 @@
     <ProjectReference Include="..\..\lib\sl\StatLight\src\StatLight.Core\StatLight.Core.csproj">
       <Project>{AA6F387F-BB41-4FA8-B38A-7037A7C59716}</Project>
       <Name>StatLight.Core</Name>
-      <Private>False</Private>
+      <Private>True</Private>
     </ProjectReference>
     <ProjectReference Include="..\AgUnit.Runner.Resharper80\AgUnit.Runner.Resharper80.csproj">
       <Project>{3b3e3193-5839-454a-8853-b7223606ef55}</Project>

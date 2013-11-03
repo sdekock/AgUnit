@@ -1,6 +1,6 @@
 using JetBrains.ReSharper.TaskRunnerFramework;
 
-namespace AgUnit.Runner.Resharper61.TaskRunner.UnitTestRunner.Silverlight.Providers
+namespace AgUnit.Runner.Resharper80.TaskRunner.UnitTestRunner.Silverlight.Providers
 {
     public interface IClassTaskProvider
     {

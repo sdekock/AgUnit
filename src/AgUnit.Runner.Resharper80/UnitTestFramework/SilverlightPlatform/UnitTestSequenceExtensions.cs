@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using AgUnit.Runner.Resharper61.UnitTestFramework.Silverlight;
+using AgUnit.Runner.Resharper80.UnitTestFramework.Silverlight;
 using JetBrains.ProjectModel;
-using JetBrains.ReSharper.TaskRunnerFramework;
 using JetBrains.ReSharper.UnitTestFramework;
+using JetBrains.ReSharper.UnitTestFramework.Strategy;
 
-namespace AgUnit.Runner.Resharper61.UnitTestFramework.SilverlightPlatform
+namespace AgUnit.Runner.Resharper80.UnitTestFramework.SilverlightPlatform
 {
     public static class UnitTestSequenceExtensions
     {
@@ -35,24 +35,13 @@ namespace AgUnit.Runner.Resharper61.UnitTestFramework.SilverlightPlatform
             return sequence.Select(task => task.RemoteTask).FirstOrDefault() as SilverlightUnitTestTask;
         }
 
-        public static void AddSilverlightUnitTestTask(this IList<UnitTestTask> sequence, IProject silverlightProject, UnitTestProviders providers)
+        public static void AddSilverlightUnitTestTask(this IList<UnitTestTask> sequence, IProject silverlightProject, UnitTestProviders providers, IUnitTestRunStrategy runStrategy)
         {
             var provider = providers.GetProvider(SilverlightUnitTestProvider.RunnerId);
-            var element = new SilverlightUnitTestElement(provider);
+            var element = new SilverlightUnitTestElement(provider, runStrategy);
 
             var remoteTask = new SilverlightUnitTestTask(silverlightProject.PlatformID.Version, silverlightProject.GetXapPath(), silverlightProject.GetDllPath());
             sequence.Insert(0, new UnitTestTask(element, remoteTask));
-        }
-
-        public static void RemoveAssemblyLoadTasks(this IList<UnitTestTask> sequence)
-        {
-#if !RS80
-            var assemblyLoadTasks = sequence.Where(t => t.RemoteTask is AssemblyLoadTask).ToArray();
-            foreach (var assemblyLoadTask in assemblyLoadTasks)
-            {
-                sequence.Remove(assemblyLoadTask);
-            }
-#endif
         }
     }
 }

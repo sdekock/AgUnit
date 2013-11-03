@@ -3,23 +3,19 @@ using System.Collections.Generic;
 using System.Xml;
 using JetBrains.ProjectModel;
 using JetBrains.ReSharper.Psi;
-using JetBrains.ReSharper.TaskRunnerFramework;
 using JetBrains.ReSharper.UnitTestFramework;
-#if RS80
 using JetBrains.ReSharper.UnitTestFramework.Strategy;
-#endif
 
-namespace AgUnit.Runner.Resharper61.UnitTestFramework.Silverlight
+namespace AgUnit.Runner.Resharper80.UnitTestFramework.Silverlight
 {
     public class SilverlightUnitTestElement : IUnitTestElement
     {
-        public SilverlightUnitTestElement(IUnitTestProvider provider)
-            : this(provider, Guid.NewGuid().ToString())
-        { }
+        private readonly IUnitTestRunStrategy runStrategy;
 
-        private SilverlightUnitTestElement(IUnitTestProvider provider, string id)
+        public SilverlightUnitTestElement(IUnitTestProvider provider, IUnitTestRunStrategy runStrategy)
         {
-            Id = id;
+            this.runStrategy = runStrategy;
+            Id = Guid.NewGuid().ToString();
             Provider = provider;
             Children = new List<IUnitTestElement>();
         }
@@ -100,11 +96,7 @@ namespace AgUnit.Runner.Resharper61.UnitTestFramework.Silverlight
             return null;
         }
 
-#if RS70 || RS71 || RS80
         public string GetPresentation(IUnitTestElement parent = null)
-#else
-        public string GetPresentation()
-#endif
         {
             return Id;
         }
@@ -129,39 +121,14 @@ namespace AgUnit.Runner.Resharper61.UnitTestFramework.Silverlight
             return new List<IProjectFile>();
         }
 
-#if RS80
         public IUnitTestRunStrategy GetRunStrategy(IHostProvider hostProvider)
         {
-            return new OutOfProcessUnitTestRunStrategy(SilverlightUnitTestProvider.GetTaskRunnerInfo());
+            return runStrategy;
         }
-#endif
 
-#if RS70 || RS71 || RS80
         public IList<UnitTestTask> GetTaskSequence(ICollection<IUnitTestElement> explicitElements, IUnitTestLaunch launch)
-#else
-        public IList<UnitTestTask> GetTaskSequence(IList<IUnitTestElement> explicitElements)
-#endif
         {
             return new List<UnitTestTask>();
-        }
-
-        public void Serialize(XmlElement xmlElement)
-        {
-            xmlElement.SetAttribute("type", typeof(SilverlightUnitTestElement).Name);
-            xmlElement.SetAttribute("id", Id);
-        }
-
-        public static bool CanDeserialize(XmlElement xmlElement)
-        {
-            return xmlElement.HasAttribute("type")
-                && xmlElement.GetAttribute("type") == typeof(SilverlightUnitTestElement).Name;
-        }
-
-        public static IUnitTestElement Deserialize(XmlElement xmlElement, SilverlightUnitTestProvider provider)
-        {
-            var id = xmlElement.GetAttribute("id");
-
-            return new SilverlightUnitTestElement(provider, id);
         }
     }
 }

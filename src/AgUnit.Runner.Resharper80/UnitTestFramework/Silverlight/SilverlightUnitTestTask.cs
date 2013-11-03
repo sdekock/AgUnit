@@ -2,7 +2,7 @@
 using System.Xml;
 using JetBrains.ReSharper.TaskRunnerFramework;
 
-namespace AgUnit.Runner.Resharper61.UnitTestFramework.Silverlight
+namespace AgUnit.Runner.Resharper80.UnitTestFramework.Silverlight
 {
     [Serializable]
     public class SilverlightUnitTestTask : RemoteTask, IEquatable<SilverlightUnitTestTask>
@@ -54,12 +54,10 @@ namespace AgUnit.Runner.Resharper61.UnitTestFramework.Silverlight
             return Equals(other.SilverlightPlatformVersion, SilverlightPlatformVersion) && Equals(other.XapPath, XapPath) && Equals(other.DllPath, DllPath);
         }
 
-#if RS80
         public override bool Equals(RemoteTask other)
         {
             return Equals(other as object);
         }
-#endif
 
         public override bool Equals(object obj)
         {
@@ -72,11 +70,7 @@ namespace AgUnit.Runner.Resharper61.UnitTestFramework.Silverlight
         {
             unchecked
             {
-#if RS80
                 int result = 0;
-#else
-                int result = base.GetHashCode();
-#endif
                 result = (result*397) ^ (SilverlightPlatformVersion != null ? SilverlightPlatformVersion.GetHashCode() : 0);
                 result = (result*397) ^ (XapPath != null ? XapPath.GetHashCode() : 0);
                 result = (result*397) ^ (DllPath != null ? DllPath.GetHashCode() : 0);

@@ -1,8 +1,8 @@
-using AgUnit.Runner.Resharper61.TaskRunner.UnitTestRunner.Silverlight.Providers;
-using AgUnit.Runner.Resharper61.Util;
+using AgUnit.Runner.Resharper80.TaskRunner.UnitTestRunner.Silverlight.Providers;
+using AgUnit.Runner.Resharper80.Util;
 using JetBrains.ReSharper.TaskRunnerFramework;
 
-namespace AgUnit.Runner.Resharper61.TaskRunner.UnitTestProvider.XUnit
+namespace AgUnit.Runner.Resharper80.TaskRunner.UnitTestProvider.XUnit
 {
     public class XUnitClassTaskProvider : IClassTaskProvider
     {

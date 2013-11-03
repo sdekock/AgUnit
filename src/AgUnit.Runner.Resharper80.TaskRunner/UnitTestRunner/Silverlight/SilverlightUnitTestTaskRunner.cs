@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using AgUnit.Runner.Resharper61.TaskRunner.UnitTestProvider;
-using AgUnit.Runner.Resharper61.TaskRunner.UnitTestRunner.Silverlight.Execution;
-using AgUnit.Runner.Resharper61.TaskRunner.UnitTestRunner.Silverlight.Providers;
+using AgUnit.Runner.Resharper80.TaskRunner.UnitTestProvider;
+using AgUnit.Runner.Resharper80.TaskRunner.UnitTestRunner.Silverlight.Execution;
+using AgUnit.Runner.Resharper80.TaskRunner.UnitTestRunner.Silverlight.Providers;
 using JetBrains.ReSharper.TaskRunnerFramework;
 using JetBrains.Util;
 using StatLight.Core;
@@ -14,34 +13,17 @@ using StatLight.Core.Events;
 using StatLight.Core.Reporting;
 using TinyIoC;
 
-namespace AgUnit.Runner.Resharper61.TaskRunner.UnitTestRunner.Silverlight
+namespace AgUnit.Runner.Resharper80.TaskRunner.UnitTestRunner.Silverlight
 {
     public class SilverlightUnitTestTaskRunner : RecursiveRemoteTaskRunner
     {
         public SilverlightUnitTestTaskRunner(IRemoteTaskServer server)
             : base(server)
         { }
-
-#if !RS80
-        public override TaskResult Start(TaskExecutionNode node)
-        {
-            return TaskResult.Success;
-        }
-
-        public override TaskResult Execute(TaskExecutionNode node)
-        {
-            return TaskResult.Success;
-        }
-
-        public override TaskResult Finish(TaskExecutionNode node)
-        {
-            return TaskResult.Success;
-        }
-#endif
-
+        
         public override void ExecuteRecursive(TaskExecutionNode node)
         {
-            //Debugger.Break();
+            //System.Diagnostics.Debugger.Launch();
 
             try
             {

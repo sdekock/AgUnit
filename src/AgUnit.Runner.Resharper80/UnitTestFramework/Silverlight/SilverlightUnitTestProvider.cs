@@ -1,23 +1,20 @@
 ﻿using System;
-using System.Drawing;
 using System.IO;
-using System.Xml;
+using System.Linq;
+using System.Reflection;
+using AgUnit.Runner.Resharper80.UnitTestFramework.SilverlightPlatform;
 using JetBrains.ProjectModel;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.TaskRunnerFramework;
 using JetBrains.ReSharper.UnitTestFramework;
-#if RS80
-using System.Reflection;
-#endif
 
-namespace AgUnit.Runner.Resharper61.UnitTestFramework.Silverlight
+namespace AgUnit.Runner.Resharper80.UnitTestFramework.Silverlight
 {
     [UnitTestProvider]
     public class SilverlightUnitTestProvider : IUnitTestProvider
     {
         public const string RunnerId = "Silverlight";
-        public const string RunnerTypeName = "AgUnit.Runner.Resharper61.TaskRunner.UnitTestRunner.Silverlight.SilverlightUnitTestTaskRunner";
-        public static readonly string RunnerCodeBase = GetRunnerCodeBase();
+        public const string RunnerTypeName = "AgUnit.Runner.Resharper80.TaskRunner.UnitTestRunner.Silverlight.SilverlightUnitTestTaskRunner";
 
         private static string GetRunnerCodeBase()
         {
@@ -25,7 +22,7 @@ namespace AgUnit.Runner.Resharper61.UnitTestFramework.Silverlight
             var directory = Path.GetDirectoryName(pluginCodeBase);
             var filename = Path.GetFileNameWithoutExtension(pluginCodeBase) + ".TaskRunner.dll";
 
-            return new Uri(Path.Combine(directory, filename)).LocalPath;
+            return new Uri(Path.Combine(directory, filename), UriKind.RelativeOrAbsolute).LocalPath;
         }
 
         public string ID
@@ -38,28 +35,18 @@ namespace AgUnit.Runner.Resharper61.UnitTestFramework.Silverlight
             get { return "Silverlight"; }
         }
 
-        public Image Icon
-        {
-            get { return null; }
-        }
-
-        public ISolution Solution
-        {
-            get { return null; }
-        }
-
-#if RS80
-        public static RemoteTaskRunnerInfo GetTaskRunnerInfo()
+        public static RemoteTaskRunnerInfo GetTaskRunnerInfo(IUnitTestLaunch launch)
         {
             var runnerType = Assembly.LoadFrom(GetRunnerCodeBase()).GetType(RunnerTypeName);
-            return new RemoteTaskRunnerInfo(RunnerId, runnerType);
+
+            var additionalPaths = launch.Runs.SelectMany(r => r.GetSequences().SelectMany(t => t))
+                .Select(t => t.RemoteTask.GetType().Assembly).Distinct()
+                .Where(a => !a.FullName.StartsWith("JetBrains"))
+                .Select(a => Path.GetDirectoryName(new Uri(a.CodeBase, UriKind.RelativeOrAbsolute).LocalPath))
+                .ToArray();
+
+            return new RemoteTaskRunnerInfo(RunnerId, runnerType, additionalPaths);
         }
-#else
-        public RemoteTaskRunnerInfo GetTaskRunnerInfo()
-        {
-            return new RemoteTaskRunnerInfo(RunnerCodeBase, RunnerTypeName);
-        }
-#endif
 
         public void ExploreExternal(UnitTestElementConsumer consumer)
         {
@@ -87,26 +74,6 @@ namespace AgUnit.Runner.Resharper61.UnitTestFramework.Silverlight
         public int CompareUnitTestElements(IUnitTestElement x, IUnitTestElement y)
         {
             return 0;
-        }
-
-        public void SerializeElement(XmlElement parent, IUnitTestElement element)
-        {
-            if (element is SilverlightUnitTestElement)
-            {
-                ((SilverlightUnitTestElement)element).Serialize(parent);
-            }
-
-            throw new ArgumentOutOfRangeException();
-        }
-
-        public IUnitTestElement DeserializeElement(XmlElement parent, IUnitTestElement parentElement)
-        {
-            if (SilverlightUnitTestElement.CanDeserialize(parent))
-            {
-                return SilverlightUnitTestElement.Deserialize(parent, this);
-            }
-
-            throw new ArgumentOutOfRangeException();
         }
     }
 }

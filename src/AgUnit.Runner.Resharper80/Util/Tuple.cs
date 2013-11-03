@@ -1,6 +1,6 @@
 using System;
 
-namespace AgUnit.Runner.Resharper61.Util
+namespace AgUnit.Runner.Resharper80.Util
 {
     public static class Tuple
     {

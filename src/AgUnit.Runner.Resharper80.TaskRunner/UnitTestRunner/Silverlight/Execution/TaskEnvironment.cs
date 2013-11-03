@@ -1,8 +1,8 @@
 using System.Collections.Generic;
-using AgUnit.Runner.Resharper61.TaskRunner.UnitTestRunner.Silverlight.Providers;
+using AgUnit.Runner.Resharper80.TaskRunner.UnitTestRunner.Silverlight.Providers;
 using JetBrains.ReSharper.TaskRunnerFramework;
 
-namespace AgUnit.Runner.Resharper61.TaskRunner.UnitTestRunner.Silverlight.Execution
+namespace AgUnit.Runner.Resharper80.TaskRunner.UnitTestRunner.Silverlight.Execution
 {
     public class TaskEnvironment
     {

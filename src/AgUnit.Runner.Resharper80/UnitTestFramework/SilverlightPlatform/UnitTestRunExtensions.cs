@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using AgUnit.Runner.Resharper61.Util;
+using AgUnit.Runner.Resharper80.Util;
 using JetBrains.ReSharper.TaskRunnerFramework;
 using JetBrains.ReSharper.UnitTestFramework;
 
-namespace AgUnit.Runner.Resharper61.UnitTestFramework.SilverlightPlatform
+namespace AgUnit.Runner.Resharper80.UnitTestFramework.SilverlightPlatform
 {
     public static class UnitTestRunExtensions
     {
@@ -25,7 +25,6 @@ namespace AgUnit.Runner.Resharper61.UnitTestFramework.SilverlightPlatform
             return run.GetField<IList<IList<UnitTestTask>>>("mySequences");
         }
 
-#if RS80
         public static void AddTaskSequence(this IUnitTestRun run, IList<UnitTestTask> sequence)
         {
             var runTasks = run.GetField<Dictionary<RemoteTask, IUnitTestElement>>("myTasks");
@@ -53,6 +52,5 @@ namespace AgUnit.Runner.Resharper61.UnitTestFramework.SilverlightPlatform
 
             run.GetSequences().Add(sequence);
         }
-#endif
     }
 }
