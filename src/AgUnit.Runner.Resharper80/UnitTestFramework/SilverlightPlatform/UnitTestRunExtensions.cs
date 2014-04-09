@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using AgUnit.Runner.Resharper80.UnitTestFramework.Silverlight;
 using AgUnit.Runner.Resharper80.Util;
 using JetBrains.ReSharper.TaskRunnerFramework;
 using JetBrains.ReSharper.UnitTestFramework;
@@ -16,19 +17,25 @@ namespace AgUnit.Runner.Resharper80.UnitTestFramework.SilverlightPlatform
 
         public static Version GetSilverlightPlatformVersion(this IUnitTestRun run)
         {
-            var sequence = run.GetSequences().FirstOrDefault();
+            var sequence = run.GetRootTasks().FirstOrDefault();
             return sequence != null ? sequence.GetSilverlightPlatformVersion() : null;
         }
 
-        public static IList<IList<UnitTestTask>> GetSequences(this IUnitTestRun run)
+        public static IList<RemoteTaskPacket> GetRootTasks(this IUnitTestRun run)
         {
-            return run.GetField<IList<IList<UnitTestTask>>>("mySequences");
+            return (run.GetTasks() as IList<RemoteTaskPacket>) ?? new List<RemoteTaskPacket>();
         }
 
-        public static void AddTaskSequence(this IUnitTestRun run, IList<UnitTestTask> sequence)
+        public static IEnumerable<RemoteTaskPacket> GetAllTasks(this IUnitTestRun run)
+        {
+            return run.GetTasks().SelectMany(t => t.GetAllTasksRecursive());
+        }
+
+        public static void AddTaskSequence(this IUnitTestRun run, RemoteTaskPacket sequence, SilverlightUnitTestElement silverlightElement, IUnitTestRun originalRun)
         {
             var runTasks = run.GetField<Dictionary<RemoteTask, IUnitTestElement>>("myTasks");
             var runTaskIdsToElements = run.GetField<Dictionary<string, IUnitTestElement>>("myTaskIdsToElements");
+            var runElementsToTasks = run.GetField<Dictionary<IUnitTestElement, RemoteTask>>("myElementsToTasks");
 
             if (runTasks == null)
             {
@@ -42,15 +49,29 @@ namespace AgUnit.Runner.Resharper80.UnitTestFramework.SilverlightPlatform
                 run.SetField("myTaskIdsToElements", runTaskIdsToElements);
             }
 
-            foreach (var unitTestTask in sequence)
+            if (runElementsToTasks == null)
             {
-                runTasks[unitTestTask.RemoteTask] = unitTestTask.Element;
-
-                if (unitTestTask.Element != null)
-                    runTaskIdsToElements[unitTestTask.RemoteTask.Id] = unitTestTask.Element;
+                runElementsToTasks = new Dictionary<IUnitTestElement, RemoteTask>();
+                run.SetField("myElementsToTasks", runElementsToTasks);
             }
 
-            run.GetSequences().Add(sequence);
+            foreach (var unitTestTask in sequence.GetAllTasksRecursive())
+            {
+                var element = originalRun.GetElementByRemoteTaskId(unitTestTask.Task.Id);
+                
+                runTasks[unitTestTask.Task] = element;
+
+                if (element != null)
+                {
+                    runTaskIdsToElements[unitTestTask.Task.Id] = element;
+                    runElementsToTasks[element] = unitTestTask.Task;
+                }
+            }
+
+            run.GetRootTasks().Add(sequence);
+            runTasks[sequence.Task] = silverlightElement;
+            runTaskIdsToElements[sequence.Task.Id] = silverlightElement;
+            runElementsToTasks[silverlightElement] = sequence.Task;
         }
     }
 }

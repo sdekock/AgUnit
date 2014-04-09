@@ -39,8 +39,8 @@ namespace AgUnit.Runner.Resharper80.UnitTestFramework.Silverlight
         {
             var runnerType = Assembly.LoadFrom(GetRunnerCodeBase()).GetType(RunnerTypeName);
 
-            var additionalPaths = launch.Runs.SelectMany(r => r.GetSequences().SelectMany(t => t))
-                .Select(t => t.RemoteTask.GetType().Assembly).Distinct()
+            var additionalPaths = launch.Runs.SelectMany(r => r.GetAllTasks())
+                .Select(t => t.Task.GetType().Assembly).Distinct()
                 .Where(a => !a.FullName.StartsWith("JetBrains"))
                 .Select(a => Path.GetDirectoryName(new Uri(a.CodeBase, UriKind.RelativeOrAbsolute).LocalPath))
                 .ToArray();

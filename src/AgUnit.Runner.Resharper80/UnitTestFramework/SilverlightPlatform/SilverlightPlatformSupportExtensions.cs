@@ -1,6 +1,7 @@
 ﻿extern alias util;
-using System.Collections.Generic;
 using System.Linq;
+using AgUnit.Runner.Resharper80.UnitTestFramework.Silverlight;
+using JetBrains.ReSharper.TaskRunnerFramework;
 using JetBrains.ReSharper.UnitTestExplorer.Launch;
 using JetBrains.ReSharper.UnitTestFramework;
 
@@ -14,7 +15,7 @@ namespace AgUnit.Runner.Resharper80.UnitTestFramework.SilverlightPlatform
 
             foreach (var run in runs.Values.Select(r => r.Value).ToArray())
             {
-                foreach (var sequence in run.GetSequences().ToArray())
+                foreach (var sequence in run.GetRootTasks().ToArray())
                 {
                     ConvertToSilverlightSequenceIfNecessary(sequence, run, launch, providers, hostController);
                 }
@@ -23,19 +24,24 @@ namespace AgUnit.Runner.Resharper80.UnitTestFramework.SilverlightPlatform
             launch.RemoveEmptyRuns();
         }
 
-        private static void ConvertToSilverlightSequenceIfNecessary(IList<UnitTestTask> sequence, UnitTestRun run, IUnitTestLaunch launch, UnitTestProviders providers, ITaskRunnerHostController hostController)
+        private static void ConvertToSilverlightSequenceIfNecessary(RemoteTaskPacket sequence, IUnitTestRun run, IUnitTestLaunch launch, UnitTestProviders providers, ITaskRunnerHostController hostController)
         {
             if (!sequence.IsSilverlightSequence())
             {
-                var silverlightProject = sequence.GetSilverlightProject();
+                var silverlightProject = sequence.GetSilverlightProject(run);
                 if (silverlightProject != null)
                 {
                     var silverlightRun = launch.GetOrCreateSilverlightRun(silverlightProject.PlatformID, providers, hostController);
 
-                    sequence.AddSilverlightUnitTestTask(silverlightProject, providers, silverlightRun.Key.RunStrategy);
+                    var provider = providers.GetProvider(SilverlightUnitTestProvider.RunnerId);
+                    var silverlightElement = new SilverlightUnitTestElement(provider, silverlightRun.Key.RunStrategy);
 
-                    run.GetSequences().Remove(sequence);
-                    silverlightRun.Value.AddTaskSequence(sequence);
+                    var remoteTask = new SilverlightUnitTestTask(silverlightProject.PlatformID.Version, silverlightProject.GetXapPath(), silverlightProject.GetDllPath());
+
+                    var silverlightSequence = new RemoteTaskPacket(remoteTask) { TaskPackets = { sequence } };
+
+                    run.GetRootTasks().Remove(sequence);
+                    silverlightRun.Value.AddTaskSequence(silverlightSequence, silverlightElement, run);
                 }
             }
         }

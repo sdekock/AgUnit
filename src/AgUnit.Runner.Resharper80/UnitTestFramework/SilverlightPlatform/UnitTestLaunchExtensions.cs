@@ -15,7 +15,7 @@ namespace AgUnit.Runner.Resharper80.UnitTestFramework.SilverlightPlatform
         public static void RemoveEmptyRuns(this IUnitTestLaunch launch)
         {
             var runs = launch.GetRuns();
-            var emptyRuns = runs.Values.Select(run => run.Value).Where(run => !run.GetSequences().Any()).ToArray();
+            var emptyRuns = runs.Values.Select(run => run.Value).Where(run => !run.GetRootTasks().Any()).ToArray();
 
             foreach (var run in emptyRuns)
             {

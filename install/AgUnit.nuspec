@@ -4,8 +4,8 @@
     <id>AgUnit</id>
     <title></title>
     <version>0.8.0</version>
-    <authors>Steven de Kock</authors>
-    <owners>Steven de Kock</owners>
+    <authors>Steven De Kock</authors>
+    <owners>Steven De Kock</owners>
 	<summary>Run Silverlight unit tests, using StatLight.</summary>
     <description>
 		Run Silverlight unit tests, using StatLight.
@@ -33,7 +33,7 @@
 	</description>
     <projectUrl>https://agunit.codeplex.com</projectUrl>
     <licenseUrl>https://agunit.codeplex.com/license</licenseUrl>
-    <copyright>Copyright 2013 Steven de Kock</copyright>
+    <copyright>Copyright 2013 Steven De Kock</copyright>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <dependencies>
       <dependency id="ReSharper" version="8.0" />

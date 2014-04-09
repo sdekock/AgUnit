@@ -7,6 +7,7 @@ using System.Threading;
 using System.Linq;
 using AgUnit.Runner.Resharper80.UnitTestFramework.Silverlight;
 using JetBrains.Application.Settings;
+using JetBrains.UI.Application;
 using util::JetBrains.DataFlow;
 using JetBrains.Metadata.Reader.API;
 using JetBrains.ProjectModel;
@@ -22,44 +23,24 @@ namespace AgUnit.Runner.Resharper80.UnitTestProvider.MSTest
         private const string SilverlightMsTestAssemblyName = "Microsoft.VisualStudio.QualityTools.UnitTesting.Silverlight";
 
         private readonly IShellLocks shellLocks;
-        private readonly ISettingsStore settingsStore;
-        private readonly Lifetime lifetime;
-        private readonly ISolution solution;
-        private readonly IUnitTestElementManager unitTestElementManager;
         private readonly mstestlegacy::JetBrains.ReSharper.UnitTestProvider.MSTest.IMsTestElementFactory elementFactory;
+        private mstest10::JetBrains.ReSharper.UnitTestProvider.MSTest10.MsTestAttributesProvider msTestAttributesProvider;
+        private mstest10::JetBrains.ReSharper.UnitTestProvider.MSTest10.MsTestElementFactory msTestElementFactory;
 
         public IUnitTestProvider Provider { get; private set; }
 
-        private mstest10::JetBrains.ReSharper.UnitTestProvider.MSTest10.MsTestAttributesProvider msTestAttributesProvider;
-        private mstest10::JetBrains.ReSharper.UnitTestProvider.MSTest10.MsTestAttributesProvider MsTestAttributesProvider
-        {
-            get { return msTestAttributesProvider ?? (msTestAttributesProvider = new mstest10::JetBrains.ReSharper.UnitTestProvider.MSTest10.MsTestAttributesProvider()); }
-        }
 
-        private mstest10::JetBrains.ReSharper.UnitTestProvider.MSTest10.MsTestElementFactory msTestElementFactory;
-        private mstest10::JetBrains.ReSharper.UnitTestProvider.MSTest10.MsTestElementFactory MsTestElementFactory
-        {
-            get { return msTestElementFactory ?? (msTestElementFactory = CreateMsTestElementFactory()); }
-        }
-
-        public SilverlightMsTestMetadataExplorer(IShellLocks shellLocks, ISettingsStore settingsStore, SilverlightUnitTestProvider provider, Lifetime lifetime, ISolution solution,
-            IUnitTestElementManager unitTestElementManager, mstestlegacy::JetBrains.ReSharper.UnitTestProvider.MSTest.IMsTestElementFactory elementFactory)
+        public SilverlightMsTestMetadataExplorer(IShellLocks shellLocks, ISettingsStore settingsStore, SilverlightUnitTestProvider provider, Lifetime lifetime, ISolution solution, 
+            IUnitTestElementManager unitTestElementManager, mstestlegacy::JetBrains.ReSharper.UnitTestProvider.MSTest.IMsTestElementFactory elementFactory, 
+            IMainWindow mainWindow, IApplicationDescriptor applicationDescriptor)
         {
             Provider = provider;
-            this.shellLocks = shellLocks;
-            this.settingsStore = settingsStore;
-            this.lifetime = lifetime;
-            this.solution = solution;
-            this.unitTestElementManager = unitTestElementManager;
-            this.elementFactory = elementFactory;
-        }
-
-        private mstest10::JetBrains.ReSharper.UnitTestProvider.MSTest10.MsTestElementFactory CreateMsTestElementFactory()
-        {
-            var msTestProvider = new mstest10::JetBrains.ReSharper.UnitTestProvider.MSTest10.MsTestProvider(settingsStore, MsTestAttributesProvider);
+            msTestAttributesProvider = new mstest10::JetBrains.ReSharper.UnitTestProvider.MSTest10.MsTestAttributesProvider();
+            var msTestProvider = new mstest10::JetBrains.ReSharper.UnitTestProvider.MSTest10.MsTestProvider(shellLocks, settingsStore, msTestAttributesProvider, mainWindow, applicationDescriptor);
             var msTestServices = new mstest10::JetBrains.ReSharper.UnitTestProvider.MSTest10.MsTestServices(lifetime, solution, msTestProvider, settingsStore);
-
-            return new mstest10::JetBrains.ReSharper.UnitTestProvider.MSTest10.MsTestElementFactory(lifetime, msTestServices, unitTestElementManager, settingsStore, solution);
+            msTestElementFactory = new mstest10::JetBrains.ReSharper.UnitTestProvider.MSTest10.MsTestElementFactory(msTestServices, unitTestElementManager);
+            this.shellLocks = shellLocks;
+            this.elementFactory = elementFactory;
         }
 
         public void ExploreAssembly(IProject project, IMetadataAssembly assembly, UnitTestElementConsumer consumer, ManualResetEvent exitEvent)
@@ -70,7 +51,7 @@ namespace AgUnit.Runner.Resharper80.UnitTestProvider.MSTest
                 var allElements = new List<IUnitTestElement>();
                 var mappedElements = new Dictionary<IUnitTestElement, IUnitTestElement>();
 
-                new mstestlegacy::JetBrains.ReSharper.UnitTestProvider.MSTest.MsTestMetadataExplorer(MsTestElementFactory, MsTestAttributesProvider, project, shellLocks, allElements.Add)
+                new mstestlegacy::JetBrains.ReSharper.UnitTestProvider.MSTest.MsTestMetadataExplorer(msTestElementFactory, msTestAttributesProvider, project, shellLocks, allElements.Add)
                     .ExploreAssembly(assembly);
 
                 foreach (var classElement in allElements.OfType<mstest10::JetBrains.ReSharper.UnitTestProvider.MSTest10.MsTestTestClassElement>())
