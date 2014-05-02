@@ -42,10 +42,10 @@
   </metadata>
   <files>
     <file src="..\output\AgUnit.Runner.ReSharper80.dll"
-          target="ReSharper\v8.0\plugins" />
+          target="ReSharper\v8.2\plugins" />
     <file src="..\output\AgUnit.Runner.ReSharper80.TaskRunner.dll"
-          target="ReSharper\v8.0\plugins" />
-    <file src="..\output\StatLight.Core.dll" target="ReSharper\v8.0\plugins" />
-    <file src="..\output\*.xap" target="ReSharper\v8.0\plugins" />
+          target="ReSharper\v8.2\plugins" />
+    <file src="..\output\StatLight.Core.dll" target="ReSharper\v8.2\plugins" />
+    <file src="..\output\*.xap" target="ReSharper\v8.2\plugins" />
   </files>
 </package>
