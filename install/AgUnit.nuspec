@@ -3,7 +3,7 @@
   <metadata>
     <id>AgUnit</id>
     <title></title>
-    <version>0.8.0</version>
+    <version>0.9.0</version>
     <authors>Steven De Kock</authors>
     <owners>Steven De Kock</owners>
 	<summary>Run Silverlight unit tests, using StatLight.</summary>
@@ -11,7 +11,7 @@
 		Run Silverlight unit tests, using StatLight.
 		
 		Supports:
-			- ReSharper 8.0.2
+			- ReSharper 8.2
 			- Visual Studio 2010, 2012 and 2013
 			- Silverlight 3, 4 and 5 (Silverlight 5 developer runtime is required for all versions)
 			- Test frameworks:
@@ -33,10 +33,10 @@
 	</description>
     <projectUrl>https://agunit.codeplex.com</projectUrl>
     <licenseUrl>https://agunit.codeplex.com/license</licenseUrl>
-    <copyright>Copyright 2013 Steven De Kock</copyright>
+    <copyright>Copyright 2014 AgUnit Authors</copyright>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <dependencies>
-      <dependency id="ReSharper" version="8.0" />
+      <dependency id="ReSharper" version="8.2" />
     </dependencies>
     <tags>resharper unittest silverlight statlight</tags>
   </metadata>

@@ -9,7 +9,7 @@ using JetBrains.Application.PluginSupport;
 [assembly: AssemblyDescription("AgUnit - http://agunit.codeplex.com")]
 [assembly: AssemblyCompany("AgUnit - http://agunit.codeplex.com")]
 [assembly: AssemblyProduct("AgUnit - http://agunit.codeplex.com")]
-[assembly: AssemblyCopyright("Copyright © AgUnit authors - http://agunit.codeplex.com 2013")]
+[assembly: AssemblyCopyright("Copyright © AgUnit authors - http://agunit.codeplex.com 2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -23,8 +23,8 @@ using JetBrains.Application.PluginSupport;
 // You can specify all the values or you can default the Revision and Build Numbers 
 // by using the '*' as shown below:
 
-[assembly: AssemblyVersion("0.8.0.0")]
-[assembly: AssemblyFileVersion("0.8.0.0")]
+[assembly: AssemblyVersion("0.9.0.0")]
+[assembly: AssemblyFileVersion("0.9.0.0")]
 
 // Plugin info for ReSharper
 
