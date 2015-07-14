@@ -37,8 +37,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Ionic.Zip.Reduced">
-      <SpecificVersion>False</SpecificVersion>
-      <Private>False</Private>
+      <HintPath>..\..\..\..\..\Program Files (x86)\JetBrains\ReSharper\v8.0\SDK\Bin\Ionic.Zip.Reduced.dll</HintPath>
     </Reference>
     <Reference Include="JetBrains.Platform.ReSharper.Shell">
       <SpecificVersion>False</SpecificVersion>
@@ -56,9 +55,8 @@
       <SpecificVersion>False</SpecificVersion>
       <Private>False</Private>
     </Reference>
-    <Reference Include="JetBrains.ReSharper.UnitTestRunner.NUnit">
-      <SpecificVersion>False</SpecificVersion>
-      <Private>False</Private>
+    <Reference Include="JetBrains.ReSharper.UnitTestRunner.nUnit">
+      <HintPath>..\..\..\..\..\Program Files (x86)\JetBrains\ReSharper\v8.0\SDK\Bin\JetBrains.ReSharper.UnitTestRunner.nUnit.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
